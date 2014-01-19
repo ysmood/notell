@@ -1,0 +1,33 @@
+{
+  "name": "nobone",
+  "version": "0.0.1",
+  "main": "launcher.coffee",
+  "scripts": {
+    "setup": "kit/app_mgr.sh setup",
+    "test": "kit/app_mgr.sh test",
+    "start": "kit/app_mgr.sh start",
+    "stop": "kit/app_mgr.sh stop"
+  },
+  "dependencies": {
+    "express": "~3.4.4",
+    "formidable": "~1.0.14",
+    "bower": "~1.2.7",
+    "underscore": "~1.5.2",
+    "coffee-script": "~1.6.3",
+    "stylus": "~0.38.0",
+    "underscore.string": "~2.3.3",
+    "forever": "~0.10.9",
+    "request": "~2.27.0",
+    "fs-extra": "~0.8.1",
+    "nedb": "~0.9.3",
+    "gaze": "~0.4.3"
+  },
+  "devDependencies": {
+    "Faker": "~0.5.11",
+    "colors": "~0.6.2"
+  },
+  "repository": {
+    "type": "git",
+    "url": ""
+  }
+}

@@ -1,0 +1,13 @@
+### Common ###
+
+!.gitkeep
+*~
+*.swp
+.DS_Store
+
+### App ###
+
+node_modules
+bower_components
+usr
+var

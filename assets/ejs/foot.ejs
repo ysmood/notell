@@ -1,0 +1,38 @@
+<!-- Global assets -->
+<?= render('/assets/sections/assets', null, true) ?>
+
+<div id="NB-scripts">
+	<?=
+		js(
+			// Third libs
+			'/requirejs/require',
+			'/jquery/jquery.min',
+			'/underscore/underscore-min',
+			'/underscore.string/dist/underscore.string.min',
+			'/bootstrap/dist/js/bootstrap.min',
+
+			// NB
+			'/js/jquery.helpers',
+			'/js/_.helpers',
+			'/langs/' + NB.app.conf.lang,
+			'/js/app'
+		)
+	?>
+</div>
+
+<!-- Global configuration. -->
+<script type="text/javascript">
+
+	// Underscore
+	_.mixin(_.str.exports());
+	_.str.include('Underscore.string', 'string');
+
+	_.templateSettings = {
+		evaluate    : /<\?([\s\S]+?)\?>/g,
+		interpolate : /<\?=([\s\S]+?)\?>/g,
+		escape      : /<\?-([\s\S]+?)\?>/g
+	};
+
+	NB.app = new NB.App
+
+</script>

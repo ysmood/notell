@@ -1,0 +1,58 @@
+@font-face
+	// Small
+	font-family 's'
+	src url('../fonts/Roboto-Light.ttf')
+	font-weight normal
+	font-style normal
+
+@font-face
+	// Normall
+	font-family 'n'
+	src url('../fonts/Roboto-Light.ttf')
+	font-weight normal
+	font-style normal
+@font-face
+	// Normall
+	font-family 'n'
+	src url('../fonts/Roboto-Regular.ttf')
+	font-weight bold
+	font-style normal
+
+@font-face
+	// Large
+	font-family 'l'
+	src url('../fonts/Roboto-Thin.ttf')
+	font-weight normal
+	font-style normal
+@font-face
+	// Small
+	font-family 'l'
+	src url('../fonts/Roboto-Light.ttf')
+	font-weight bold
+	font-style normal
+
+.font-s
+	font-family s, '微软雅黑'
+.font-n
+	font-family n, '微软雅黑'
+.font-l
+	font-family l, '微软雅黑'
+
+.font-grey
+	color #aaa
+.font-blue
+	color #428bca
+.font-green
+	color #5cb85c
+.font-cyan
+	color #5bc0de
+.font-yellow
+	color #f0ad4e
+.font-red
+	color #d9534f
+
+
+for num in (5 .. 18)
+	n = num * 2
+	.font-{n}
+		font-size n px

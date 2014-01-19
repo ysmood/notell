@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+	<?= head ?>
+
+	<title><?- _.l('NB') ?> - 404</title>
+
+</head>
+<body>
+
+	<div class="container" style="margin-top: 30px">
+		<div class="alert alert-danger text-center">
+			<img src="/img/NB.png" alt="">
+			<h1 class="font-l font-38">
+				<i class="icon-warning-sign"></i>
+				<code><?= url ?></code>
+				<?- _.l('Not Found') ?>
+			</h1>
+			<h3 class="font-n">
+				<a href="/"><?- _.l('Click here back') ?></a>
+			</h3>
+		</div>
+	</div>
+
+</body>
+</html>

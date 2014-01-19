@@ -1,0 +1,26 @@
+// Clearfix from bootstrap.
+clearfix()
+	clear both
+	&:before, &:after
+		content: " ";
+		display: table;
+	&:after
+		clear: both;
+
+animation($params...)
+	-webkit-animation $params
+	-o-animation $params
+	animation $params
+
+transform($params...)
+	-webkit-transform $params
+	-o-transform $params
+	transform $params
+
+transform_rotateX($deg)
+	transform perspective(600px) rotateX($deg)
+
+transition($params...)
+	-webkit-transition $params
+	-o-transition $params
+	transition $params

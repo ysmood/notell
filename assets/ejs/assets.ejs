@@ -1,0 +1,28 @@
+
+<!-- Global modal message box. -->
+<div id="NB-msg_box" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header font-l font-26">
+				<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+			</div>
+			<div class="modal-body font-n font-16">
+			</div>
+			<div class="modal-footer">
+			</div>
+		</div>
+	</div>
+</div>
+
+<script id="NB-tpl-msg_box_btns" type='text/ejs'>
+	<? _.each(btn_list, function(btn) { ?>
+		<button type="button" class="btn btn-default <?= btn.class ?>">
+			<?- btn.name ?>
+		</button>
+	<? }); ?>
+</script>
+
+<!-- Global modal message box. -->
+<div id="NB-info_box" class="font-l font-20">
+	<div class="info"></div>
+</div>
