@@ -15,13 +15,13 @@ class NB.Database extends NB.Module
 		@nedb.persistence.setAutocompactionInterval(1000 * 60 * 60 * 24 * 7)
 
 		# DB API
-		@app.post(@prefix + '/insert', @insert)
-		@app.post(@prefix + '/find', @find)
-		@app.post(@prefix + '/find_one', @find_one)
-		@app.post(@prefix + '/update', @update)
-		@app.post(@prefix + '/remove', @remove)
+		@expr.post(@prefix + '/insert', @insert)
+		@expr.post(@prefix + '/find', @find)
+		@expr.post(@prefix + '/find_one', @find_one)
+		@expr.post(@prefix + '/update', @update)
+		@expr.post(@prefix + '/remove', @remove)
 
-		@app.get(@prefix + '/reload', @reload)
+		@expr.get(@prefix + '/reload', @reload)
 
 	insert: (req, res) =>
 		_.sandbox(=>

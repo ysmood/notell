@@ -7,7 +7,7 @@
 		@underscore.helpers _ helpers.coffee
 
 	Module: {
-		@app
+		@expr
 			Global express obj.
 		@r
 			Module wide renderer.
@@ -25,7 +25,7 @@
 class NB.Module
 
 	set_static_dir: (root_dir, pattern = '/') ->
-		@app.use(pattern, (req, res, next) ->
+		@expr.use(pattern, (req, res, next) ->
 			fs_path = require 'path'
 
 			ext = fs_path.extname(req.path)
@@ -76,7 +76,7 @@ class NB.Module
 			res.send code
 		)
 
-		@app.use(pattern, @express.static(root_dir))
+		@expr.use(pattern, @express.static(root_dir))
 
 	constructor: ->
 		@_init_config()
@@ -111,7 +111,7 @@ class NB.Module
 	_init_express: ->
 		@express = NB.express ?= require 'express'
 
-		@app = NB.express_app ?= @express()
+		@expr = NB.express_app ?= @express()
 
 	_init_renderer: ->
 		if not NB.Renderer

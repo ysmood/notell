@@ -39,6 +39,20 @@ _.mixin
 		v = +arr[0] * 10000 + +arr[1] * 100 + +arr[2]
 		return v
 
+	find_route: (routes, req) ->
+		###
+			Traverse through the express's routes, return the route which matches
+			the given path.
+		###
+
+		for verb, list of routes
+			for route in list
+				if route.regexp.test(req.path) and
+				route.method == req.method
+					return route
+
+		return null
+
 	class_name: (name) ->
 		_.capitalize(name)
 

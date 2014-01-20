@@ -26,19 +26,17 @@ class NB.App extends NB.Module
 
 	init_config: ->
 		# Set the body parser.
-		@app.use(@express.json())
-		@app.use(@express.urlencoded())
+		@expr.use(@express.json())
+		@expr.use(@express.urlencoded())
 
 	init_global_router: ->
-		@app.use(@express.static('bower_components'))
+		@expr.use(@express.static('bower_components'))
 		@set_static_dir('assets')
-		@app.use('/usr', @express.static('usr'))
+		@expr.use('/usr', @express.static('usr'))
 
-		@app.use(@express.favicon('assets/img/NB.png'))
+		@expr.use(@express.favicon('assets/img/NB.png'))
 
-		@app.get('/', @home)
-
-		@app.use(@show_404)
+		@expr.use(@show_404)
 
 	init_module: (name) ->
 		require "../#{name}/#{name}"
@@ -72,24 +70,21 @@ class NB.App extends NB.Module
 			plugin = new Plugin
 			NB.plugins[name.toLowerCase()] = plugin
 
-	home: (req, res) =>
-		res.send 200
-
 	show_404: (req, res, next) =>
-		if _.find_route(@app.routes, req.path)
+		if _.find_route(@expr.routes, req.path)
 			next()
 			return
 
 		data = {
-			head: @r.render('/assets/sections/head')
+			head: @r.render('/assets/ejs/head')
 			url: req.originalUrl
 		}
 		res.status(404)
-		res.send @r.render('/assets/404', data)
+		res.send @r.render('/assets/ejs/404', data)
 		console.error ('>> 404: ' + req.originalUrl).c('red')
 
 	launch: ->
-		@app.listen @conf.port
+		@expr.listen @conf.port
 		console.log ("""
 			*** #{@package.name.toUpperCase()} #{@package.version} ***
 			>> Node version: #{process.version}
