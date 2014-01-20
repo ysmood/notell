@@ -2,9 +2,7 @@ module.exports = {
 
 	port: 8013
 
-	modules: [
-		'app'
-	]
+	modules: []
 
 	db_filename: 'var/NB.db'
 

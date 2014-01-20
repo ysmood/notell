@@ -8,11 +8,11 @@ global.NB = {}
 
 require './sys/module'
 
-class NB.App extends NB.Module
+class NB.Nobone extends NB.Module
 	constructor: ->
 		super
 
-		NB.app = @
+		NB.nobone = @
 
 		# Must be init first.
 		@init_config()
@@ -20,6 +20,7 @@ class NB.App extends NB.Module
 		@init_database()
 		@init_storage()
 		@init_api()
+		@init_modules()
 		@init_plugins()
 
 		@init_global_router()
@@ -38,11 +39,17 @@ class NB.App extends NB.Module
 
 		@expr.use(@show_404)
 
-	init_module: (name) ->
-		require "../#{name}/#{name}"
+	init_modules: (name) ->
+		for name in @conf.modules
+			m = name.match /^(.+)\.(.+)$/
+			namespace = m[1]
+			class_name = m[2]
+			path = class_name.toLowerCase()
 
-		NB[name] = new NB[_.class_name(name)]
-		NB[name].set_static_dir("#{name}/client", "/#{name}")
+			ns = global[namespace] ?= {}
+			require "./#{path}/#{path}"
+
+			ns[class_name.toLowerCase()] = new ns[class_name]
 
 	init_database: ->
 		require './sys/database'
@@ -93,7 +100,8 @@ class NB.App extends NB.Module
 
 
 # Launch the application.
-app = new NB.App
-app.launch()
+new NB.Nobone
+
+NB.nobone.launch()
 
 console.log ">> Took #{Date.now() - _init_timestamp}ms to startup.".c('cyan')

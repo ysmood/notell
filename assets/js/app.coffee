@@ -1,4 +1,4 @@
-class NB.App
+class NB.Nobone
 	constructor: ->
 		@init_global_tooltip()
 		@init_global_effect()

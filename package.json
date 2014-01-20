@@ -1,7 +1,7 @@
 {
   "name": "nobone",
   "version": "0.0.1",
-  "main": "launcher.coffee",
+  "main": "nobone.coffee",
   "scripts": {
     "setup": "kit/app_mgr.sh setup",
     "test": "kit/app_mgr.sh test",
