@@ -6,6 +6,10 @@ A general node server template.
 
 ### Installation
 
+	git clone https://github.com/ysmood/nobone.git
+
+	cd nobone
+
     npm run-script setup
 
 ### Generate Module
