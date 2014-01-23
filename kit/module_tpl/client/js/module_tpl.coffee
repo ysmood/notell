@@ -1,6 +1,4 @@
-$h = $('h1')
-
-$h.transit {
+$('h1').transit {
 	marginTop: 40
 	opacity: 1
 }

@@ -22,6 +22,8 @@
 	}
 ###
 
+global.NB ?= {}
+
 class NB.Module
 
 	set_static_dir: (root_dir, pattern = '/') ->

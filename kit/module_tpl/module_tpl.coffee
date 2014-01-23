@@ -1,4 +1,4 @@
-class MOE.App extends NB.Module
+class <%= class_name %> extends NB.Module
 	constructor: ->
 		super
 
