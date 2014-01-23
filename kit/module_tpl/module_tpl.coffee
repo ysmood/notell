@@ -17,4 +17,4 @@ class <%= class_name %> extends NB.Module
 		}
 
 		# Render page.
-		res.send @r.render('client/ejs/home', data)
+		res.send @r.render('client/ejs/app', data)
