@@ -1,4 +1,6 @@
-Another node app framework.
+# Nobone
+
+A general node server template.
 
 ## Usage
 
