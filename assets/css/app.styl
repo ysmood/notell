@@ -1,30 +1,4 @@
-
 @import "mixins"
-
-html, body
-	height 100%
-
-body
-	background #eee
-	background-size 100% 100%
-
-
-// Set scroll bar style.
-$scrollbar_size = 7px
-$scrollbar_color = #eee
-::-webkit-scrollbar
-	width $scrollbar_size
-	height $scrollbar_size
-::-webkit-scrollbar-track
-	background #fff
-	border 1px solid $scrollbar_color
-	box-shadow 1px 1px 3px $scrollbar_color inset
-::-webkit-scrollbar-thumb
-	background #ccc
-	border-radius $scrollbar_size
-
-	&:hover
-		background #99C4E6
 
 .btn
 	border-radius 2px
@@ -41,15 +15,6 @@ $scrollbar_color = #eee
 	animation kfs_tooltip 200ms
 	.tooltip-inner
 		border-radius 2px
-
-// Debug helpers
-.debug-tag
-	position absolute
-	right 0
-	top 0
-	margin 10px
-	color #aaa
-	z-index 1000
 
 .cursor-pointer
 	cursor pointer

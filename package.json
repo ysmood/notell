@@ -20,7 +20,8 @@
     "request": "~2.27.0",
     "fs-extra": "~0.8.1",
     "nedb": "~0.9.3",
-    "gaze": "~0.4.3"
+    "gaze": "~0.4.3",
+    "socket.io": "~0.9.16"
   },
   "devDependencies": {
     "Faker": "~0.5.11",

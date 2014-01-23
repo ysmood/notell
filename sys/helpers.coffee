@@ -53,9 +53,6 @@ _.mixin
 
 		return null
 
-	class_name: (name) ->
-		_.capitalize(name)
-
 	get_cached_code: (path, compiler) ->
 		###
 			compiler: (str) ->
