@@ -8,8 +8,6 @@ class <%= class_name %> extends NB.Module
 
 		NB.app.get '/', @home
 
-		NB.io.sockets.on 'connection', @sock
-
 	home: (req, res) =>
 		# Load sections.
 		data = {
@@ -20,10 +18,3 @@ class <%= class_name %> extends NB.Module
 
 		# Render page.
 		res.send @r.render('client/ejs/app', data)
-
-	sock: (s) =>
-		s.emit('server', 'socket server ok')
-
-		s.on('client', (data) ->
-			console.log data
-		)

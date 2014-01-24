@@ -17,10 +17,10 @@ class NB.Nobone extends NB.Module
 		# Must be init first.
 		@init_config()
 
+		@init_modules()
 		@init_database()
 		@init_storage()
 		@init_api()
-		@init_modules()
 		@init_plugins()
 
 		@init_global_router()
