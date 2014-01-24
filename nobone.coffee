@@ -27,17 +27,17 @@ class NB.Nobone extends NB.Module
 
 	init_config: ->
 		# Set the body parser.
-		@expr.use(@express.json())
-		@expr.use(@express.urlencoded())
+		NB.app.use(NB.express.json())
+		NB.app.use(NB.express.urlencoded())
 
 	init_global_router: ->
-		@expr.use(@express.static('bower_components'))
+		NB.app.use(NB.express.static('bower_components'))
 		@set_static_dir('assets')
-		@expr.use('/usr', @express.static('usr'))
+		NB.app.use('/usr', NB.express.static('usr'))
 
-		@expr.use(@express.favicon('assets/img/NB.png'))
+		NB.app.use(NB.express.favicon('assets/img/NB.png'))
 
-		@expr.use(@show_404)
+		NB.app.use(@show_404)
 
 	init_modules: (name) ->
 		for name in @conf.modules
@@ -78,7 +78,7 @@ class NB.Nobone extends NB.Module
 			NB.plugins[name.toLowerCase()] = plugin
 
 	show_404: (req, res, next) =>
-		if _.find_route(@expr.routes, req.path)
+		if _.find_route(NB.app.routes, req.path)
 			next()
 			return
 
@@ -91,7 +91,7 @@ class NB.Nobone extends NB.Module
 		console.error ('>> 404: ' + req.originalUrl).c('red')
 
 	launch: ->
-		@expr.listen @conf.port
+		NB.server.listen @conf.port
 		console.log ("""
 			*** #{@package.name.toUpperCase()} #{@package.version} ***
 			>> Node version: #{process.version}

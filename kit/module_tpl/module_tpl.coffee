@@ -4,7 +4,7 @@ class <%= class_name %> extends NB.Module
 
 		@name = @constructor.name.toLowerCase()
 
-		@expr.get '/', @home
+		NB.app.get '/', @home
 
 		@set_static_dir(@name + '/client', '/' + @name)
 

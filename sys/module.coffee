@@ -7,14 +7,10 @@
 		@underscore.helpers _ helpers.coffee
 
 	Module: {
-		@expr
-			Global express obj.
 		@r
 			Module wide renderer.
 		@emitter
 			Module wide event manager.
-		@express
-			Global express class.
 		@package
 			The global obj of the package.json.
 		@conf
@@ -27,7 +23,7 @@ global.NB ?= {}
 class NB.Module
 
 	set_static_dir: (root_dir, pattern = '/') ->
-		@expr.use(pattern, (req, res, next) ->
+		NB.app.use(pattern, (req, res, next) ->
 			fs_path = require 'path'
 
 			ext = fs_path.extname(req.path)
@@ -78,13 +74,13 @@ class NB.Module
 			res.send code
 		)
 
-		@expr.use(pattern, @express.static(root_dir))
+		NB.app.use(pattern, NB.express.static(root_dir))
 
 	constructor: ->
 		@_init_config()
 		@_load_lang()
 		@_load_global_libs()
-		@_init_express()
+		@_init_server()
 		@_init_renderer()
 		@_init_emitter()
 
@@ -110,10 +106,14 @@ class NB.Module
 		if @conf.mode != 'product'
 			require 'colors'
 
-	_init_express: ->
-		@express = NB.express ?= require 'express'
+	_init_server: ->
+		if not NB.express
+			NB.express = require('express')
+			NB.app = NB.express()
+			NB.server = require('http').Server(NB.app)
+			NB.io = require('socket.io').listen(NB.server)
 
-		@expr = NB.express_app ?= @express()
+			NB.io.set('log level', 1)
 
 	_init_renderer: ->
 		if not NB.Renderer

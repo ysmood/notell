@@ -5,7 +5,7 @@ class NB.Storage extends NB.Module
 	constructor: ->
 		super
 
-		@expr.post('/upload/:dir', @upload)
+		NB.app.post('/upload/:dir', @upload)
 
 	upload: (req, res) =>
 		###
