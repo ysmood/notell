@@ -4,9 +4,11 @@ class <%= class_name %> extends NB.Module
 
 		@name = @constructor.name.toLowerCase()
 
+		@set_static_dir(@name + '/client', '/' + @name)
+
 		NB.app.get '/', @home
 
-		@set_static_dir(@name + '/client', '/' + @name)
+		NB.io.sockets.on 'connection', @sock
 
 	home: (req, res) =>
 		# Load sections.
@@ -18,3 +20,10 @@ class <%= class_name %> extends NB.Module
 
 		# Render page.
 		res.send @r.render('client/ejs/app', data)
+
+	sock: (s) =>
+		s.emit('server', 'socket server ok')
+
+		s.on('client', (data) ->
+			console.log data
+		)
