@@ -35,7 +35,7 @@ These are the client tools that you can take advantage of.
 
 ### Quick Start
 
-Let's create a module with namespace `MOE` and named `App`.
+Let's create a sample application with namespace `MOE` and named `App`.
 
 0. First we clone the **nobone** to a directory.
 
@@ -55,9 +55,11 @@ Let's create a module with namespace `MOE` and named `App`.
     kit/make_module.coffee MOE.App
     ```
 
+    You can look into the `app` folder and custom whatever you want.
+
 0. Edit the `var/config.coffee` file. Add your generated module to the `modules` array. You'd add this to the config file.
 
-    ```bash
+    ```coffee
     modules: ['MOE.App']
     ```
 

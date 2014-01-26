@@ -3,6 +3,10 @@
 fs = require 'fs-extra'
 _ = require 'underscore'
 
+if not process.argv[2]
+	console.log 'Usage: make_module Namespace.Class_name'
+	return
+
 [namespace, class_name] = process.argv[2].split('.')
 
 pname = class_name.toLowerCase()
@@ -32,3 +36,5 @@ fs.renameSync(
 src = fs.readFileSync(pname + "/#{pname}.coffee", 'utf8')
 code = _.template(src, { class_name: process.argv[2] })
 fs.writeFileSync(pname + "/#{pname}.coffee", code)
+
+console.log '>> Module created: ' + process.argv[2]
