@@ -10,7 +10,7 @@ case $1 in
 			node_modules/.bin/bower --allow-root install
 
 		# Configuration
-		config_example='kit/etc/config.example.coffee'
+		config_example='kit/config.example.coffee'
 		if [ ! -f config.coffee ]; then
 			echo '>> Auto created an example config file.'
 			cp $config_example config.coffee
