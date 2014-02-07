@@ -13,7 +13,7 @@ case $1 in
 		config_example='kit/config.example.coffee'
 		if [ ! -f config.coffee ]; then
 			echo '>> Auto created an example config file.'
-			cp $config_example config.coffee
+			cp $config_example var/config.coffee
 		fi
 		;;
 
