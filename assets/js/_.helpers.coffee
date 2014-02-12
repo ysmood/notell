@@ -199,22 +199,22 @@ _.mixin(
 		if not window.AudioContext
 			return
 
-		TDT.audio_ctx ?= new AudioContext()
-		TDT.audio_cache ?= {}
+		NB.audio_ctx ?= new AudioContext()
+		NB.audio_cache ?= {}
 
 		play = ->
-			src = TDT.audio_ctx.createBufferSource()
-			src.buffer = TDT.audio_cache[url]
-			src.connect(TDT.audio_ctx.destination)
+			src = NB.audio_ctx.createBufferSource()
+			src.buffer = NB.audio_cache[url]
+			src.connect(NB.audio_ctx.destination)
 			src.start(0)
 
-		if not TDT.audio_cache[url]
+		if not NB.audio_cache[url]
 			req = new XMLHttpRequest()
 			req.open('GET', url, true)
 			req.responseType = 'arraybuffer'
 			req.onload = ->
-				TDT.audio_ctx.decodeAudioData(req.response, (buf) ->
-					TDT.audio_cache[url] = buf
+				NB.audio_ctx.decodeAudioData(req.response, (buf) ->
+					NB.audio_cache[url] = buf
 					play()
 				)
 			req.send()
