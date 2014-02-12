@@ -23,7 +23,7 @@ case $1 in
 
 	'start' )
 		uptime_conf='--minUptime 5000 --spinSleepTime 5000'
-		log_conf='-a -o log/std.log -e log/err.log'
+		log_conf='-a -o var/log/std.log -e var/log/err.log'
 		$forever start $uptime_conf $log_conf -c $coffee $app
 		;;
 
