@@ -56,24 +56,27 @@ _.mixin(
 
 		$msg_box.modal('show')
 
-	info_box: (options) ->
+	notify: (options = {}) ->
 		defaults =
-			info: _.l('info box')
+			info: _.l('your information')
 			class: ''
 			delay: 700
 
 		opts = _.defaults(options, defaults)
-		$info_box = $('#NB-info_box')
-		$info_box.find('.info').text(opts.info).addClass(opts.class)
+		$noti = $('<div class="noti">')
+			.text(opts.info)
+			.addClass(opts.class)
+		$('#NB-notifications').append $noti
 
 		requirejs(['/jquery.transit/jquery.transit.js'], ->
-			$info_box.stop(true, true).transit_fade_in(->
-				$info_box.stop(true, true).delay(opts.delay).transit_fade_out(->
-					$info_box.find('.info').removeClass(opts.class)
-				)
+			$noti.transit_fade_in(->
+				$noti.delay(opts.delay)
+					.transit { right: $noti.outerWidth() / 2, opacity: 0 }, ->
+						$noti.slideUp ->
+							$noti.remove()
 			, opts.delay)
 		)
-		return $info_box
+		return $noti
 
 	pt_sum: (point_a, point_b, direction = 1) ->
 		###

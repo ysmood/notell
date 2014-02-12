@@ -11,6 +11,5 @@
     "ys-keymaster": "~1.6.2"
   },
   "devDependencies": {
-    "Faker": "~0.5.11"
   }
 }
