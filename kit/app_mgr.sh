@@ -1,7 +1,7 @@
 coffee='node_modules/.bin/coffee'
 forever='node_modules/.bin/forever'
 
-app='nobone.coffee'
+app=$(dirname $(dirname $(readlink -f $0)))/nobone.coffee
 
 case $1 in
 	'setup' )
