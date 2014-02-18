@@ -1,7 +1,12 @@
 coffee='node_modules/.bin/coffee'
 forever='node_modules/.bin/forever'
 
-app=$(dirname $(dirname $(readlink -f $0)))/nobone.coffee
+function readlink() {
+	DIR=$(echo "${1%/*}")
+	(cd "$DIR" && echo "$(pwd -P)")
+}
+
+app=$(dirname $(readlink $0))/nobone.coffee
 
 case $1 in
 	'setup' )
