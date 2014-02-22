@@ -2,10 +2,10 @@
   "name": "NB",
   "dependencies": {
     "requirejs": "~2.1.9",
-    "jquery": "~2.0.3",
+    "jquery": "~2.1.0",
     "underscore": "~1.5.2",
     "underscore.string": "~2.3.3",
-    "bootstrap": "~3.0.0",
+    "bootstrap": "~3.1.1",
     "font-awesome": "~4.0.1",
     "jquery.transit": "~0.9.9",
     "ys-keymaster": "~1.6.2"
