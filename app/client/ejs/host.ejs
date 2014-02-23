@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<?= head ?>
+
+	<?= _.css('app/css/host.css') ?>
+
+	<title>Notell - Host</title>
+</head>
+<body>
+
+
+	<?= foot ?>
+
+	<?= _.js(
+		'/socket.io/socket.io.js',
+		'app/js/host.js'
+	) ?>
+
+	<script type="text/javascript">
+
+		NT.host = new NT.Host;
+
+	</script>
+
+</body>
+</html>

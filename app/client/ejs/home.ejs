@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<?= head ?>
+
+	<?= _.css('app/css/home.css') ?>
+
+	<title>Notell</title>
+</head>
+<body>
+
+	<?= foot ?>
+
+	<?= _.js(
+		'/socket.io/socket.io.js',
+		'app/js/host.js',
+		'app/js/guest.js',
+		'app/js/notell.js'
+	) ?>
+
+	<script type="text/javascript">
+
+		NT.notell = new NT.Notell;
+
+	</script>
+
+</body>
+</html>
