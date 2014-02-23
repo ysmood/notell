@@ -3,7 +3,6 @@ class NB.Nobone
 		@init_underscore()
 		@init_langs()
 		@init_global_tooltip()
-		@init_global_effect()
 
 	init_underscore: ->
 		_.mixin _.str.exports()
@@ -26,12 +25,4 @@ class NB.Nobone
 				animation: false
 			)
 			$this.tooltip('show').removeAttr('title')
-		)
-
-	init_global_effect: ->
-		$('body').on(
-			'mouseenter'
-			'a, .button, .btn, .view_mode, [xtool], [tool], .tool-group-tabs .tab'
-			->
-				_.play_audio('/audio/ta.mp3')
 		)

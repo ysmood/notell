@@ -1,15 +1,15 @@
 {
   "name": "NB",
   "dependencies": {
-    "requirejs": "~2.1.9",
+    "requirejs": "~2.1.11",
     "jquery": "~2.1.0",
     "underscore": "~1.5.2",
     "underscore.string": "~2.3.3",
     "bootstrap": "~3.1.1",
     "font-awesome": "~4.0.1",
     "jquery.transit": "~0.9.9",
-    "ys-keymaster": "~1.6.2"
+    "ys-keymaster": "~1.6.2",
+    "reveal.js": "~2.6.1"
   },
-  "devDependencies": {
-  }
+  "devDependencies": {}
 }
