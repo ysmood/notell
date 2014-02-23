@@ -1,10 +1,8 @@
 
 Nedb = require 'nedb'
 
-class NB.Database extends NB.Module
+class NB.Database
 	constructor: ->
-		super
-
 		@nedb = new Nedb(
 			filename: NB.conf.db_filename
 			autoload: true
@@ -12,3 +10,10 @@ class NB.Database extends NB.Module
 
 		# Auto compact every week.
 		@nedb.persistence.setAutocompactionInterval(1000 * 60 * 60 * 24 * 7)
+
+		NB.app.get '/database', @test
+
+	test: (req, res) =>
+		@nedb.insert { test: 200 }, (err, doc) =>
+			@nedb.findOne { test: 200 }, (err, doc) =>
+				res.send doc.test

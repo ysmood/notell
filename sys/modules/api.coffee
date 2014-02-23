@@ -1,8 +1,6 @@
-class NB.Api extends NB.Module
+class NB.Api
 	constructor: ->
-		super
-
-		NB.app.get '/api/test', @test
+		NB.app.get '/api', @test
 
 	test: (req, res) =>
 		res.send 200
