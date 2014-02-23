@@ -7,7 +7,6 @@ NB.conf = {
 	modules: {
 		'NB.Database': './sys/database'
 		'NB.Storage': './sys/storage'
-		'NB.Plugin': './sys/plugin'
 		'NB.Api': './sys/api'
 	}
 
