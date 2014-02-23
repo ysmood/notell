@@ -2,7 +2,14 @@ NB.conf = {
 
 	port: 8013
 
-	modules: []
+	enable_socket_io: false
+
+	modules: {
+		'NB.Database': './sys/database'
+		'NB.Storage': './sys/storage'
+		'NB.Plugin': './sys/plugin'
+		'NB.Api': './sys/api'
+	}
 
 	db_filename: 'var/NB.db'
 

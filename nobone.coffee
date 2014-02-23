@@ -18,10 +18,6 @@ class NB.Nobone extends NB.Module
 		@init_config()
 
 		@init_modules()
-		@init_database()
-		@init_storage()
-		@init_api()
-		@init_plugins()
 
 		@init_global_router()
 
@@ -39,17 +35,18 @@ class NB.Nobone extends NB.Module
 
 		NB.app.use(@show_404)
 
-	init_modules: (name) ->
-		for name in NB.conf.modules
+	init_modules: ->
+		for name, path of NB.conf.modules
 			m = name.match /^(.+)\.(.+)$/
 			namespace = m[1]
 			class_name = m[2]
-			path = class_name.toLowerCase()
 
 			ns = global[namespace] ?= {}
-			require "./#{path}/#{path}"
+			require path
 
 			ns[class_name.toLowerCase()] = new ns[class_name]
+
+			console.log ">> Load module: #{name}:#{path}".c('green')
 
 	init_database: ->
 		require './sys/database'
