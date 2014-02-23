@@ -5,16 +5,16 @@ NB.conf = {
 	enable_socket_io: false
 
 	modules: {
-		'NB.Database': './sys/database'
-		'NB.Storage': './sys/storage'
-		'NB.Api': './sys/api'
+		'NB.Database': './sys/modules/database'
+		'NB.Storage': './sys/modules/storage'
+		'NB.Api': './sys/modules/api'
 	}
 
 	db_filename: 'var/NB.db'
 
-	load_langs: ['en']
+	load_langs: ['en', 'cn']
 
-	current_lang: ['en']
+	current_lang: ['cn']
 
 	mode: 'development'
 

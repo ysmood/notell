@@ -5,12 +5,16 @@
 
 	<?= _.css(css) ?>
 
-	<title><?- _.l('MOE') ?></title>
+	<title><?- _.l(title.toUpperCase()) ?></title>
 </head>
 <body>
 
 	<h1 class="text-center font-l" title="Chris Avellone">
 		Time is not your enemy, forever is.
+	</h1>
+
+	<h1 class="text-center font-l" title="Chris Avellone">
+		<?= _.l('Time is not your enemy, forever is.') ?>
 	</h1>
 
 	<?= foot ?>
