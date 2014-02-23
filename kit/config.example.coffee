@@ -1,4 +1,4 @@
-module.exports = {
+NB.conf = {
 
 	port: 8013
 
@@ -6,7 +6,9 @@ module.exports = {
 
 	db_filename: 'var/NB.db'
 
-	lang: 'en'
+	load_langs: ['en']
+
+	current_lang: ['en']
 
 	mode: 'development'
 

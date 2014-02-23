@@ -11,10 +11,11 @@ class <%= class_name %> extends NB.Module
 	home: (req, res) =>
 		# Load sections.
 		data = {
-			head: @r.render('/assets/ejs/head')
-			foot: @r.render('/assets/ejs/foot')
-			class_name: @name
+			head: @r.render('assets/ejs/head.ejs')
+			foot: @r.render('assets/ejs/foot.ejs')
+			css: "/#{@name}/css/#{@name}.css"
+			js: "/#{@name}/js/#{@name}.js"
 		}
 
 		# Render page.
-		res.send @r.render('client/ejs/app', data)
+		res.send @r.render(@name + '/client/ejs/app.ejs', data)
