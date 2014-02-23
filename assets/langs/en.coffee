@@ -1,2 +1,2 @@
-NB.lang = {
+NB.langs.en = {
 }

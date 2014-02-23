@@ -1,37 +1,36 @@
 <!-- Global assets -->
-<?= render('/assets/ejs/assets', null, true) ?>
+<?= render('assets/ejs/assets.ejs', null, true) ?>
 
 <div id="NB-scripts">
 	<?=
-		js(
+		_.js(
 			// Third libs
-			'/requirejs/require',
-			'/jquery/dist/jquery.min',
-			'/underscore/underscore-min',
-			'/underscore.string/dist/underscore.string.min',
-			'/bootstrap/dist/js/bootstrap.min',
+			'/requirejs/require.js',
+			'/jquery/dist/jquery.min.js',
+			'/underscore/underscore-min.js',
+			'/underscore.string/dist/underscore.string.min.js',
+			'/bootstrap/dist/js/bootstrap.min.js',
 
 			// NB
-			'/js/jquery.helpers',
-			'/js/_.helpers',
-			'/langs/' + NB.nobone.conf.lang,
-			'/js/app'
+			'/js/jquery.helpers.js',
+			'/js/_.helpers.js',
+			'/js/app.js'
 		)
 	?>
+
+	<!-- Load languages. -->
+	<?= _.js(
+		NB.conf.load_langs.map(
+			function(el) {
+				return '/langs/' + el + '.js';
+			}
+		)
+	) ?>
+
 </div>
 
 <!-- Global configuration. -->
 <script type="text/javascript">
-
-	// Underscore
-	_.mixin(_.str.exports());
-	_.str.include('Underscore.string', 'string');
-
-	_.templateSettings = {
-		evaluate    : /<\?([\s\S]+?)\?>/g,
-		interpolate : /<\?=([\s\S]+?)\?>/g,
-		escape      : /<\?-([\s\S]+?)\?>/g
-	};
 
 	NB.nobone = new NB.Nobone
 

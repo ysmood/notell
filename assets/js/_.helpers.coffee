@@ -190,7 +190,7 @@ _.mixin(
 			Translate English to current language.
 		###
 
-		str = NB.lang[english]
+		str = NB.langs[NB.conf.current_lang][english]
 		return str or english
 
 	play_audio: (url) ->

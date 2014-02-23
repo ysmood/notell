@@ -8,7 +8,7 @@ class NB.Database extends NB.Module
 		@prefix = '/' + @constructor.name.toLowerCase()
 
 		@nedb = new Nedb(
-			filename: @conf.db_filename
+			filename: NB.conf.db_filename
 			autoload: true
 		)
 		# Auto compact every week.

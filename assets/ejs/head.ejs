@@ -1,21 +1,27 @@
 <meta charset="UTF-8">
 
 <?=
-	css(
+	_.css(
 		// Third libs
-		'/bootstrap/dist/css/bootstrap.min',
-		'/font-awesome/css/font-awesome.min',
+		'/bootstrap/dist/css/bootstrap.min.css',
+		'/font-awesome/css/font-awesome.min.css',
 
 		// NB
-		'/css/fonts',
-		'/css/app'
+		'/css/fonts.css',
+		'/css/app.css'
 	)
 ?>
 
 <script type="text/javascript">
 
 	// App name space.
-	NB = {}
+	NB = {
+		langs: {},
+		conf: {
+			mode: '<?= NB.conf.mode ?>',
+			current_lang: '<?= NB.conf.current_lang ?>'
+		}
+	};
 
 </script>
 

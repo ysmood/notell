@@ -8,9 +8,9 @@ _.mixin
 			func()
 		catch e
 			console.error "\u0007\n" # Bell sound
-			console.error """>>err_msg
+			console.error """>> #{err_msg}
 				>> #{e}
-				#{e.stack}
+				>> Stack: #{e.stack}
 			""".c('red')
 			if e.location
 				console.error JSON.stringify(e, null, 4).c('red')
@@ -81,7 +81,7 @@ _.mixin
 
 		get_code()
 
-		if NB.nobone.conf.mode != 'product'
+		if NB.conf.mode != 'product'
 			Gaze = require 'gaze'
 
 			gaze = new Gaze(path)
@@ -163,15 +163,41 @@ _.mixin
 			Translate English to current language.
 		###
 
-		str = NB.lang[english]
+		str = NB.langs[NB.conf.current_lang][english]
 		return str or english
+
+	js: (list) =>
+		# e.g. js('main.js', 'others.js', ...)
+		if list instanceof Array
+			arr = list
+		else
+			arr = arguments
+
+		out = ''
+		for path in arr
+			out += "<script type='text/javascript' src='#{path}'></script>"
+
+		return out
+
+	css: (list) =>
+		# e.g. css('main.css', 'others.css', ...)
+		if list instanceof Array
+			arr = list
+		else
+			arr = arguments
+
+		out = ''
+		for path in arr
+			out += "<link rel='stylesheet' type='text/css' href='#{path}' />"
+
+		return out
 
 
 # Other helpers
 
 	# String color getter only works on none-product mode.
 	String.prototype.c = (color) ->
-		if NB.nobone.conf.mode != 'product'
+		if NB.conf.mode != 'product'
 			return this[color]
 		else
 			return this + ''

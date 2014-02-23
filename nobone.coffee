@@ -40,7 +40,7 @@ class NB.Nobone extends NB.Module
 		NB.app.use(@show_404)
 
 	init_modules: (name) ->
-		for name in @conf.modules
+		for name in NB.conf.modules
 			m = name.match /^(.+)\.(.+)$/
 			namespace = m[1]
 			class_name = m[2]
@@ -83,19 +83,19 @@ class NB.Nobone extends NB.Module
 			return
 
 		data = {
-			head: @r.render('/assets/ejs/head')
+			head: @r.render('assets/ejs/head.ejs')
 			url: req.originalUrl
 		}
 		res.status(404)
-		res.send @r.render('/assets/ejs/404', data)
+		res.send @r.render('assets/ejs/404.ejs', data)
 		console.error ('>> 404: ' + req.originalUrl).c('red')
 
 	launch: ->
-		NB.server.listen @conf.port
+		NB.server.listen NB.conf.port
 		console.log ("""
-			*** #{@package.name.toUpperCase()} #{@package.version} ***
+			*** #{NB.package.name.toUpperCase()} #{NB.package.version} ***
 			>> Node version: #{process.version}
-			>> Start at port: #{@conf.port}
+			>> Start at port: #{NB.conf.port}
 		""").c('cyan')
 
 

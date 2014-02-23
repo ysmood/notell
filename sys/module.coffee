@@ -11,10 +11,6 @@
 			Module wide renderer.
 		@emitter
 			Module wide event manager.
-		@package
-			The global obj of the package.json.
-		@conf
-			Global config.
 	}
 ###
 
@@ -77,19 +73,21 @@ class NB.Module
 		NB.app.use(pattern, NB.express.static(root_dir))
 
 	constructor: ->
-		@_init_config()
-		@_load_lang()
+		@_load_confs()
+		@_load_langs()
 		@_load_global_libs()
 		@_init_server()
 		@_init_renderer()
 		@_init_emitter()
 
-	_init_config: ->
-		@package = NB.package ?= require '../package.json'
-		@conf = NB.conf ?= require '../var/config'
+	_load_confs: ->
+		NB.package ?= require '../package.json'
+		require '../var/config'
 
-	_load_lang: ->
-		require '../assets/langs/' + @conf.lang
+	_load_langs: ->
+		NB.langs ?= {}
+		for lang in NB.conf.load_langs
+			require '../assets/langs/' + lang
 
 	_load_global_libs: ->
 		# Load underscore.
@@ -103,7 +101,7 @@ class NB.Module
 
 			require './helpers'
 
-		if @conf.mode != 'product'
+		if NB.conf.mode != 'product'
 			require 'colors'
 
 	_init_server: ->
