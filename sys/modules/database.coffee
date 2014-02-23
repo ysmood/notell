@@ -14,6 +14,8 @@ class NB.Database
 		NB.app.get '/database', @test
 
 	test: (req, res) =>
-		@nedb.insert { test: 200 }, (err, doc) =>
-			@nedb.findOne { test: 200 }, (err, doc) =>
-				res.send doc.test
+		data = { test: 200 }
+		@nedb.insert data, (err, doc) =>
+			@nedb.findOne data, (err, doc) =>
+				@nedb.remove data, (err, num) =>
+					res.send doc.test
