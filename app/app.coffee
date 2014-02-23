@@ -7,7 +7,7 @@ class NT.App extends NB.Module
 		NB.app.get '/', @home
 		NB.app.get '/host', @host
 
-		@init_sockets()
+		@init_socket()
 
 	home: (req, res) =>
 		data = {
@@ -26,7 +26,10 @@ class NT.App extends NB.Module
 		res.send @r.render("app/client/ejs/host.ejs", data)
 
 
-	init_sockets: ->
+	init_socket: ->
 		NB.io.sockets.on 'connection', (socket) =>
-			socket.on 'info', (data) =>
+			socket.emit 'test', 'ok'
+
+			socket.on 'reveal', (data) ->
 				console.log data
+				NB.io.sockets.emit 'reveal', data

@@ -1,3 +1,12 @@
 class NT.Host
 	constructor: ->
-		console.log 'host'
+		@init_socket()
+
+		$('.btn').click =>
+			@socket.emit 'reveal', 'next'
+
+	init_socket: ->
+		@socket = io.connect(location.origin)
+
+		@socket.on 'test', (data) ->
+			console.log data
