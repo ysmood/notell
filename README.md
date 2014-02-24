@@ -33,5 +33,14 @@ When you and your colleagues have network connection, take up your phone and rem
 0. Visit the `http://127.0.0.1:8013` in browser, the server should work.
 
 
+### Deamon Operations
+
+```bash
+npm start
+npm stop
+npm restart
+```
+
+
   [1]: https://github.com/hakimel/reveal.js
   [2]: http://socket.io/
