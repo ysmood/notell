@@ -44,7 +44,8 @@ class NT.App extends NB.Module
 				# Boardcast the host state to all clients.
 				socket.on 'slidechanged', (indices) =>
 					@state.indices = indices
-					console.log ">> slidechanged".blue
+					info = JSON.stringify indices
+					console.log ">> slidechanged: #{info}".blue
 					NB.io.sockets.emit 'slidechanged', indices
 
 				socket.on 'paused', =>
