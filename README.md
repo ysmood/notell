@@ -1,47 +1,19 @@
 ### Overview
 
-A general node server template.
+A presentation server based on [Reveal.js][1] and [Socket.IO][2].
 
-This project is more like a general configuration than a framework.
-It will give you some useful tools to quick setup a commmon node server project.
+You can use a PC or a phone to control the presentation state on guest machines.
 
-These are the server tools that you can take advantage of.
-
-* express
-* formidable
-* bower
-* underscore
-* underscore.string
-* coffee-script
-* stylus
-* forever
-* request
-* fs-extra
-* nedb
-* gaze
-* socket.io
-
-These are the client tools that you can take advantage of.
-
-* requirejs
-* jquery
-* underscore
-* underscore.string
-* bootstrap
-* font-awesome
-* jquery.transit
-* ys-keymaster
+When you and your colleagues have network connection, take up your phone and remote control your presentation ~
 
 
 ### Quick Start
 
-Let's create a sample application with namespace `MOE` and named `App`.
-
-0. First we clone the **nobone** to a directory.
+0. First we clone the project to a directory.
 
    ```bash
-   git clone https://github.com/ysmood/nobone.git
-   cd nobone
+   git clone https://github.com/ysmood/notell.git
+   cd notell
    ```
 
 0. Install dependencies.
@@ -49,20 +21,8 @@ Let's create a sample application with namespace `MOE` and named `App`.
     ```bash
     npm run-script setup
     ```
-0. Create the module.
 
-    ```bash
-    kit/make_module.coffee MOE.App
-    ```
-
-    You can look into the `app` folder and custom whatever you want.
-
-0. Edit the `var/config.coffee` file. Add your generated module to the `modules` array. You'd add this to the config file.
-   add the line below to the `modules`.
-
-    ```coffee
-    'MOE.App': './app/app.coffee' # (The `.coffee` extension is optional.)
-    ```
+0. Edit the `var/config.coffee` file. Change the value of the `token`, this is the password for logging in as host.
 
 0. Run the test server.
 
@@ -70,4 +30,8 @@ Let's create a sample application with namespace `MOE` and named `App`.
     npm test
     ```
 
-0. Visit the `http://127.0.0.1:8013` in browser, the framework should work.
+0. Visit the `http://127.0.0.1:8013` in browser, the server should work.
+
+
+  [1]: https://github.com/hakimel/reveal.js
+  [2]: http://socket.io/
