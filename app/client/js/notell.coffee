@@ -26,10 +26,10 @@ class NT.Notell
 
 	init_revealjs: ->
 		Reveal.initialize {
-			controls: true
-			progress: true
-			history: true
+			controls: false
 			center: true
+			keyboard: false
+			touch: false
 
 			theme: Reveal.getQueryHash().theme
 			transition: Reveal.getQueryHash().transition or 'default'

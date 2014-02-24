@@ -4,6 +4,11 @@ class NT.Guest
 
 		document.title += _.l(' - Guest')
 
+		$(document).keyup (e) =>
+			switch e.keyCode
+				when 70, 32, 13
+					@full_screen()
+
 	init_socket: ->
 		@socket = io.connect location.origin
 
@@ -24,3 +29,17 @@ class NT.Guest
 		@socket.on 'resumed', =>
 			if Reveal.isPaused()
 				Reveal.togglePause()
+
+	full_screen: ->
+
+		element = document.body
+
+		requestMethod = element.requestFullScreen or
+							element.webkitRequestFullscreen or
+							element.webkitRequestFullScreen or
+							element.mozRequestFullScreen or
+							element.msRequestFullScreen
+
+		if requestMethod
+			requestMethod.apply element
+

@@ -36,6 +36,15 @@ class NT.Host
 
 		document.title += _.l(' - Host')
 
+		Reveal.configure {
+			controls: true
+			progress: true
+			history: true
+			slideNumber: true
+			keyboard: true
+			touch: true
+		}
+
 		@$host_panel.transit_fade_in()
 
 		@socket.emit 'slidechanged', Reveal.getIndices()
