@@ -42,5 +42,12 @@ npm restart
 ```
 
 
+### License
+
+The MIT License (MIT)
+
+Feb 2014 ys
+
+
   [1]: https://github.com/hakimel/reveal.js
   [2]: http://socket.io/
