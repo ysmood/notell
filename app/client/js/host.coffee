@@ -7,6 +7,12 @@ class NT.Host
 		Reveal.addEventListener 'slidechanged', (e) =>
 			@socket.emit 'slidechanged', Reveal.getIndices()
 
+		Reveal.addEventListener 'fragmentshown', (e) =>
+			@socket.emit 'slidechanged', Reveal.getIndices()
+
+		Reveal.addEventListener 'fragmenthidden', (e) =>
+			@socket.emit 'slidechanged', Reveal.getIndices()
+
 		Reveal.addEventListener 'paused', =>
 			@socket.emit 'paused'
 
