@@ -18,6 +18,7 @@ class NT.App extends NB.Module
 			head: @r.render('assets/ejs/head.ejs')
 			foot: @r.render('assets/ejs/foot.ejs')
 			host_assets: @r.render('app/client/ejs/assets.ejs')
+			reveal: @r.render('app/client/ejs/reveal.ejs')
 		}
 
 		res.send @r.render("app/client/ejs/home.ejs", data)
