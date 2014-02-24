@@ -30,6 +30,8 @@ class NT.App extends NB.Module
 	init_socket: ->
 		NB.io.sockets.on 'connection', (socket) =>
 			console.log '>> A client connected.'.c('green')
+			client_num = NB.io.sockets.clients().length
+			console.log ">> Client number: #{client_num}".c('green')
 
 			socket.emit 'state', @state
 
