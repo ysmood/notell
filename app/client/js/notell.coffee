@@ -3,10 +3,26 @@ class NT.Notell
 	constructor: ->
 		@init_revealjs()
 
-		if _.startsWith(location.pathname, '/host')
-			@init_host()
-		else
-			@init_guest()
+		Reveal.addEventListener 'ready', @init_role
+
+	init_role: =>
+		self = @
+
+		$msg_box = _.msg_box {
+			title: _.l("Choose your role")
+			body: $('#role-option-tpl').html()
+		}
+		$msg_box.find('.btn').click ->
+			mode = $(this).attr('mode')
+			switch mode
+				when 'guest'
+					self.init_guest()
+				when 'host'
+					self.init_host()
+				else
+					document.title += _.l(' - Free')
+
+			$msg_box.modal('hide')
 
 	init_revealjs: ->
 		Reveal.initialize {

@@ -1,0 +1,40 @@
+
+
+<div id="host-panel" class="text-center">
+
+	<button action='home' class="btn btn-default">
+		<i class='fa fa-step-backward'></i>
+	</button>
+
+	<button action='pause' class="btn btn-default">
+		<i class='fa fa-pause'></i>
+	</button>
+
+	<button action='end' class="btn btn-default">
+		<i class='fa fa-step-forward'></i>
+	</button>
+
+</div>
+
+<script id='role-option-tpl' type="text/ejs">
+
+	<button mode='guest' class="btn btn-primary btn-lg btn-block">
+		<?= _.l('Guest Mode') ?>
+	</button>
+	<button mode='host' class="btn btn-primary btn-lg btn-block">
+		<?= _.l('Host Mode') ?>
+	</button>
+	<button mode='free' class="btn btn-primary btn-lg btn-block">
+		<?= _.l('Free Mode') ?>
+	</button>
+
+</script>
+
+<script id='host-login-tpl' type="text/ejs">
+
+	<div class="input-group">
+		<span class="input-group-addon"><i class='fa fa-key'></i></span>
+		<input type="text" class="form-control" placeholder="<?= _.l('Token') ?>">
+	</div>
+
+</script>

@@ -7,6 +7,29 @@ class NT.Host
 		Reveal.addEventListener 'slidechanged', (e) =>
 			@socket.emit 'slidechanged', Reveal.getIndices()
 
+		Reveal.addEventListener 'paused', =>
+			@socket.emit 'paused'
+
+		Reveal.addEventListener 'resumed', =>
+			@socket.emit 'resumed'
+
+		@$host_panel = $('#host-panel')
+		@$host_panel.transit_fade_in()
+		@$host_panel.find('.btn').click ->
+			switch $(this).attr('action')
+				when 'home'
+					Reveal.slide 0
+				when 'pause'
+					Reveal.togglePause()
+				when 'end'
+					Reveal.slide Number.MAX_VALUE
+
+	logged_in: ->
+		document.title += _.l(' - Host')
+
+		@socket.emit 'slidechanged', Reveal.getIndices()
+		@socket.emit 'resumed'
+
 	auth: =>
 		token = localStorage.getItem('token')
 
@@ -42,9 +65,10 @@ class NT.Host
 			}
 			localStorage.removeItem 'token'
 
-		@socket.on 'authed', (data) ->
+		@socket.on 'authed', (data) =>
 			_.notify {
 				info: _.l('Authed')
 			}
+			@logged_in()
 
 		@socket.on 'connect', @auth

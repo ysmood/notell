@@ -2,10 +2,14 @@ class NT.App extends NB.Module
 	constructor: ->
 		super
 
+		@state = {
+			indices: { h: 0, v: 0, f: 0 }
+			is_paused: false
+		}
+
 		@set_static_dir('app/client', '/app')
 
 		NB.app.get '/', @home
-		NB.app.get '/host', @home
 
 		@init_socket()
 
@@ -13,7 +17,7 @@ class NT.App extends NB.Module
 		data = {
 			head: @r.render('assets/ejs/head.ejs')
 			foot: @r.render('assets/ejs/foot.ejs')
-			host_assets: @r.render('app/client/ejs/host_assets.ejs')
+			host_assets: @r.render('app/client/ejs/assets.ejs')
 		}
 
 		res.send @r.render("app/client/ejs/home.ejs", data)
@@ -24,7 +28,11 @@ class NT.App extends NB.Module
 
 	init_socket: ->
 		NB.io.sockets.on 'connection', (socket) =>
-			@auth_host socket, (is_host) ->
+			console.log '>> A client connected.'.c('green')
+
+			socket.emit 'state', @state
+
+			@auth_host socket, (is_host) =>
 				if is_host
 					socket.emit 'authed', 'ok'
 					console.log '>> Host authed.'.c('yellow')
@@ -34,6 +42,17 @@ class NT.App extends NB.Module
 					return
 
 				# Boardcast the host state to all clients.
-				socket.on 'slidechanged', (data) ->
+				socket.on 'slidechanged', (indices) =>
+					@state.indices = indices
 					console.log ">> slidechanged".blue
-					NB.io.sockets.emit 'slidechanged', data
+					NB.io.sockets.emit 'slidechanged', indices
+
+				socket.on 'paused', =>
+					@state.is_paused = true
+					console.log ">> paused".blue
+					NB.io.sockets.emit 'paused'
+
+				socket.on 'resumed', =>
+					@state.is_paused = false
+					console.log ">> resumed".blue
+					NB.io.sockets.emit 'resumed'
