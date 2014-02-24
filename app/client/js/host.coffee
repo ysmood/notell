@@ -14,7 +14,6 @@ class NT.Host
 			@socket.emit 'resumed'
 
 		@$host_panel = $('#host-panel')
-		@$host_panel.transit_fade_in()
 		@$host_panel.find('.btn').click ->
 			switch $(this).attr('action')
 				when 'home'
@@ -24,8 +23,14 @@ class NT.Host
 				when 'end'
 					Reveal.slide Number.MAX_VALUE
 
-	logged_in: ->
+	logged_in: =>
+		_.notify {
+			info: _.l('Authed')
+		}
+
 		document.title += _.l(' - Host')
+
+		@$host_panel.transit_fade_in()
 
 		@socket.emit 'slidechanged', Reveal.getIndices()
 		@socket.emit 'resumed'
@@ -65,10 +70,6 @@ class NT.Host
 			}
 			localStorage.removeItem 'token'
 
-		@socket.on 'authed', (data) =>
-			_.notify {
-				info: _.l('Authed')
-			}
-			@logged_in()
+		@socket.on 'authed', @logged_in
 
 		@socket.on 'connect', @auth
