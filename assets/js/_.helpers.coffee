@@ -68,14 +68,12 @@ _.mixin(
 			.addClass(opts.class)
 		$('#NB-notifications').append $noti
 
-		requirejs(['/jquery.transit/jquery.transit.js'], ->
-			$noti.transit_fade_in(->
-				$noti.delay(opts.delay)
-					.transit { right: $noti.outerWidth() / 2, opacity: 0 }, ->
-						$noti.slideUp ->
-							$noti.remove()
-			, opts.delay)
-		)
+		$noti.transit_fade_in(->
+			$noti.delay(opts.delay)
+				.transit { right: $noti.outerWidth() / 2, opacity: 0 }, ->
+					$noti.slideUp ->
+						$noti.remove()
+		, opts.delay)
 		return $noti
 
 	pt_sum: (point_a, point_b, direction = 1) ->

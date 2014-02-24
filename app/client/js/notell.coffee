@@ -3,12 +3,10 @@ class NT.Notell
 	constructor: ->
 		@init_revealjs()
 
-		@init_socket()
-
-		_.msg_box {
-			title: 'test'
-			body: 'test'
-		}
+		if _.startsWith(location.pathname, '/host')
+			@init_host()
+		else
+			@init_guest()
 
 	init_revealjs: ->
 		Reveal.initialize {
@@ -27,14 +25,8 @@ class NT.Notell
 			]
 		}
 
-	init_socket: ->
-		@socket = io.connect location.origin
+	init_host: ->
+		@host = new NT.Host
 
-		@socket.on 'test', (data) ->
-			console.log data
-
-		@socket.on 'reveal', (cmd) ->
-			console.log cmd
-			switch cmd
-				when 'next'
-					Reveal.next()
+	init_guest: ->
+		@guest = new NT.Guest

@@ -117,6 +117,8 @@
 
 	</div>
 
+	<?= host_assets ?>
+
 	<?= foot ?>
 
 	<?= _.js(
@@ -126,8 +128,10 @@
 		'/reveal.js/js/reveal.min.js',
 
 		'/socket.io/socket.io.js',
-		'app/js/notell.js',
-		'/requirejs/require.js'
+
+		'app/js/guest.js',
+		'app/js/host.js',
+		'app/js/notell.js'
 	) ?>
 
 	<script type="text/javascript">
