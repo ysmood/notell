@@ -7,6 +7,13 @@ You can use a PC or a phone to control the presentation state on guest machines.
 When you and your colleagues have network connection, take up your phone and remote control your presentation ~
 
 
+### Features
+
+* Dead simple to setup.
+
+* Auto refresh the presentation when you edit save it.
+
+
 ### Quick Start
 
 0. First we clone the project to a directory.
@@ -31,6 +38,9 @@ When you and your colleagues have network connection, take up your phone and rem
     ```
 
 0. Visit the `http://127.0.0.1:8013` in browser, the server should work.
+
+0. Edit the file `app/client/ejs/reveal.ejs`, it is where you write your presentation contents.
+   When you save the file, the server will auto-reload the page, no F5 hell.
 
 
 ### Deamon Operations
