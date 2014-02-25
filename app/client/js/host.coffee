@@ -1,5 +1,5 @@
 class NT.Host
-	constructor: ->
+	constructor: (@socket) ->
 		@init_socket()
 		@init_events()
 
@@ -80,6 +80,4 @@ class NT.Host
 			}
 
 	init_socket: ->
-		@socket = io.connect(location.origin)
-
 		@socket.on 'connect', @auth

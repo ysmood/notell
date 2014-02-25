@@ -45,6 +45,10 @@ class NT.App extends NB.Module
 
 			@auth_host socket
 
+		# Auto reload page when file changed.
+		NB.nobone.emitter.on 'code_reload', (path) ->
+			NB.io.sockets.emit 'code_reload', path
+
 	client_connected: (socket) ->
 		console.log '>> A connected.'.c('green')
 		client_num = NB.io.sockets.clients().length

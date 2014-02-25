@@ -1,12 +1,20 @@
 
 class NT.Notell
 	constructor: ->
+		@socket = io.connect(location.origin)
+
 		@init_revealjs()
 
 		Reveal.addEventListener 'ready', @init_role
 
+		@init_auto_refresh()
+
 	init_role: =>
 		self = @
+
+		if localStorage.getItem('token')
+			@init_host()
+			return
 
 		$msg_box = _.msg_box {
 			title: _.l("Choose your role")
@@ -43,7 +51,11 @@ class NT.Notell
 		}
 
 	init_host: ->
-		@host = new NT.Host
+		@host = new NT.Host @socket
 
 	init_guest: ->
-		@guest = new NT.Guest
+		@guest = new NT.Guest @socket
+
+	init_auto_refresh: ->
+		@socket.on 'code_reload', (path) ->
+			location.reload()

@@ -1,5 +1,5 @@
 class NT.Guest
-	constructor: ->
+	constructor: (@socket) ->
 		@init_socket()
 
 		document.title += _.l(' - Guest')
@@ -18,8 +18,6 @@ class NT.Guest
 					@full_screen()
 
 	init_socket: ->
-		@socket = io.connect location.origin
-
 		@socket.on 'state', (state) =>
 			indices = state.indices
 			Reveal.slide indices.h, indices.v, indices.f

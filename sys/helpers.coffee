@@ -76,6 +76,8 @@ _.mixin
 
 					t = (new Date).toLocaleTimeString()
 					console.log (">> #{t} Reload: " + path).c('green')
+
+					NB.nobone.emitter.emit 'code_reload', path
 				"Load error: " + path
 			)
 
