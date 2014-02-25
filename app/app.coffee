@@ -11,7 +11,7 @@ class NT.App extends NB.Module
 
 		NB.app.get '/', @home
 
-		@init_socket()
+		@init_sockets()
 
 	home: (req, res) =>
 		data = {
@@ -23,40 +23,53 @@ class NT.App extends NB.Module
 
 		res.send @r.render("app/client/ejs/home.ejs", data)
 
-	auth_host: (socket, done) ->
-		socket.on 'auth', (data) ->
-			done data.token == NB.conf.token
+	auth_host: (socket) ->
+		socket.on 'auth', (data, resp_fn) =>
+			is_host = data.token == NB.conf.token
+			if is_host
+				@init_host_socket socket
 
-	init_socket: ->
+				socket.set('role', 'host')
+
+				console.log '>> Host authed.'.c('yellow')
+			else
+				console.log '>> Host auth failed.'.c('red')
+
+			resp_fn is_host
+
+	init_sockets: ->
 		NB.io.sockets.on 'connection', (socket) =>
-			console.log '>> A client connected.'.c('green')
-			client_num = NB.io.sockets.clients().length
-			console.log ">> Client number: #{client_num}".c('green')
+			socket.set('role', 'guest')
 
-			socket.emit 'state', @state
+			@client_connected socket
 
-			@auth_host socket, (is_host) =>
-				if is_host
-					socket.emit 'authed', 'ok'
-					console.log '>> Host authed.'.c('yellow')
-				else
-					socket.emit 'auth_err', 'wrong token'
-					console.log '>> Host auth failed.'.c('red')
-					return
+			@auth_host socket
 
-				# Boardcast the host state to all clients.
-				socket.on 'slidechanged', (indices) =>
-					@state.indices = indices
-					info = JSON.stringify indices
-					console.log ">> slidechanged: #{info}".blue
-					NB.io.sockets.emit 'slidechanged', indices
+	client_connected: (socket) ->
+		console.log '>> A connected.'.c('green')
+		client_num = NB.io.sockets.clients().length
+		console.log ">> Client count: #{client_num}".c('green')
 
-				socket.on 'paused', =>
-					@state.is_paused = true
-					console.log ">> paused".blue
-					NB.io.sockets.emit 'paused'
+		socket.emit 'state', @state
 
-				socket.on 'resumed', =>
-					@state.is_paused = false
-					console.log ">> resumed".blue
-					NB.io.sockets.emit 'resumed'
+		socket.on 'disconnect', ->
+			role = socket.store.data.role.toUpperCase()
+			console.log ">> A #{role} disconnected.".c('red')
+
+	init_host_socket: (socket) ->
+		# Boardcast the host state to all clients.
+		socket.on 'slidechanged', (indices) =>
+			@state.indices = indices
+			info = JSON.stringify indices
+			console.log ">> slidechanged: #{info}".blue
+			socket.broadcast.emit 'slidechanged', indices
+
+		socket.on 'paused', =>
+			@state.is_paused = true
+			console.log ">> paused".blue
+			socket.broadcast.emit 'paused'
+
+		socket.on 'resumed', =>
+			@state.is_paused = false
+			console.log ">> resumed".blue
+			socket.broadcast.emit 'resumed'

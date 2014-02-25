@@ -37,12 +37,7 @@ class NT.Host
 		document.title += _.l(' - Host')
 
 		Reveal.configure {
-			controls: true
-			progress: true
-			history: true
 			slideNumber: true
-			keyboard: true
-			touch: true
 		}
 
 		@$host_panel.transit_fade_in()
@@ -54,9 +49,18 @@ class NT.Host
 		token = localStorage.getItem('token')
 
 		if token
-			@socket.emit 'auth', {
+			@socket.emit('auth', {
 				token: token
-			}
+			}, (is_succeed) =>
+				if is_succeed
+					@logged_in()
+				else
+					_.notify {
+						info: _.l(data)
+						class: 'red'
+					}
+					localStorage.removeItem 'token'
+			)
 		else
 			$msgbox = _.msg_box {
 				title: _.l('Login')
@@ -77,14 +81,5 @@ class NT.Host
 
 	init_socket: ->
 		@socket = io.connect(location.origin)
-
-		@socket.on 'auth_err', (data) ->
-			_.notify {
-				info: _.l(data)
-				class: 'red'
-			}
-			localStorage.removeItem 'token'
-
-		@socket.on 'authed', @logged_in
 
 		@socket.on 'connect', @auth

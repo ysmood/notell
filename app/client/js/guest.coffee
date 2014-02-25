@@ -4,6 +4,14 @@ class NT.Guest
 
 		document.title += _.l(' - Guest')
 
+		Reveal.configure {
+			controls: false
+			center: true
+			keyboard: false
+			touch: false
+			slideNumber: false
+		}
+
 		$(document).keyup (e) =>
 			switch e.keyCode
 				when 70, 32, 13
