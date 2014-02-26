@@ -42,6 +42,8 @@ When you and your colleagues have network connection, take up your phone and rem
 0. Edit the file `app/client/ejs/reveal.ejs`, it is where you write your presentation contents.
    When you save the file, the server will auto-reload the page, no F5 hell.
 
+   Edit the file `app/client/css/custom.styl` to define your custom styles.
+
 
 ### Deamon Operations
 

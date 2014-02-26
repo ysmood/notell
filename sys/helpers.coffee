@@ -78,7 +78,6 @@ _.mixin
 						NB.code_cache_pool[path] = str
 
 					t = (new Date).toLocaleTimeString()
-					console.log (">> #{t} Reload: " + path).c('green')
 
 					if is_first_load
 						console.log (">> #{t} Load: " + path).c('green')

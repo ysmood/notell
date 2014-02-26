@@ -1,4 +1,3 @@
-
 class NT.Notell
 	constructor: ->
 		@socket = io.connect(location.origin, {
