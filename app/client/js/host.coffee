@@ -1,6 +1,6 @@
 class NT.Host
 	constructor: (@socket) ->
-		@init_socket()
+		@auth()
 		@init_events()
 
 	init_events: ->
@@ -78,6 +78,3 @@ class NT.Host
 					}
 				]
 			}
-
-	init_socket: ->
-		@socket.on 'connect', @auth
