@@ -92,6 +92,9 @@ _.mixin
 
 		if NB.conf.mode != 'product'
 			Gaze = require 'gaze'
+			NB.watch_count ?= 0
+			NB.watch_count++
+			console.log ">> #{NB.watch_count}".c('yellow')
 
 			gaze = new Gaze(path)
 			gaze.on('changed', get_code)

@@ -1,6 +1,7 @@
 class NT.Host
 	constructor: (@socket) ->
 		@is_locked = false
+		@is_zoom_mode = false
 		@zoom = null
 
 		@init_auth()
@@ -12,19 +13,24 @@ class NT.Host
 	init_events: ->
 		self = @
 
-		Reveal.addEventListener 'slidechanged', (e) =>
+		Reveal.addEventListener 'slidechanged', =>
+			@zoom = null
 			@socket.emit 'state_changed', @get_state()
 
-		Reveal.addEventListener 'fragmentshown', (e) =>
+		Reveal.addEventListener 'fragmentshown', =>
+			@zoom = null
 			@socket.emit 'state_changed', @get_state()
 
-		Reveal.addEventListener 'fragmenthidden', (e) =>
+		Reveal.addEventListener 'fragmenthidden', =>
+			@zoom = null
 			@socket.emit 'state_changed', @get_state()
 
 		Reveal.addEventListener 'paused', =>
+			@zoom = null
 			@socket.emit 'state_changed', @get_state()
 
 		Reveal.addEventListener 'resumed', =>
+			@zoom = null
 			@socket.emit 'state_changed', @get_state()
 
 		@$host_panel = $('#host-panel')
@@ -47,14 +53,25 @@ class NT.Host
 
 					Reveal.slide Number.MAX_VALUE
 
+				when 'zoom'
+					self.is_zoom_mode = !self.is_zoom_mode
+					if not self.is_zoom_mode
+						self.zoom == null
+					$this.find('i').toggleClass('fa-search fa-search-plus')
+
 				when 'lock'
 					self.is_locked = !self.is_locked
 					$('.prevent-interaction').toggle()
 					$this.find('i').toggleClass('fa-lock fa-unlock')
+			$this.blur()
 
 	init_zoom: ->
 		$slides = $('.slides')
 		$slides.on 'click', (e) =>
+			if not @is_zoom_mode
+				@zoom = null
+				return
+
 			index = _.indexOf $slides[0].getElementsByTagName('*'), e.target
 
 			if index >= 0
@@ -69,9 +86,6 @@ class NT.Host
 			zoom: @zoom
 			is_paused: Reveal.isPaused()
 		}
-		setTimeout(=>
-			@zoom = null
-		, 1000)
 
 		return state
 
