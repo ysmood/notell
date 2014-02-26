@@ -2,7 +2,7 @@
 class NT.Notell
 	constructor: ->
 		@socket = io.connect(location.origin, {
-			'reconnection limit': 1000
+			'reconnection limit': 500
 			'max reconnection attempts': 100000
 		})
 
