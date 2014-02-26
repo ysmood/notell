@@ -24,23 +24,25 @@ class NT.Guest
 
 		@socket.emit 'get_state', {}, @set_state
 
-		@socket.on 'slidechanged', (indices) =>
-			Reveal.slide indices.h, indices.v, indices.f
-
-		@socket.on 'paused', =>
-			if not Reveal.isPaused()
-				Reveal.togglePause()
-
-		@socket.on 'resumed', =>
-			if Reveal.isPaused()
-				Reveal.togglePause()
+		@socket.on 'state_changed', (state) =>
+			@set_state state
 
 	set_state: (state) =>
 		indices = state.indices
 		Reveal.slide indices.h, indices.v, indices.f
 
-		if state.is_paused and not Reveal.isPaused()
-			Reveal.togglePause()
+		if state.zoom
+			el = $('.slides')[0].getElementsByTagName('*')[state.zoom.index]
+			zoom.to({ element: el })
+		else
+			zoom.out()
+
+		if state.is_paused
+			if not Reveal.isPaused()
+				Reveal.togglePause()
+		else
+			if Reveal.isPaused()
+				Reveal.togglePause()
 
 	full_screen: ->
 

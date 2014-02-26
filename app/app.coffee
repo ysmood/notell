@@ -63,18 +63,8 @@ class NT.App extends NB.Module
 
 	init_host_socket: (socket) ->
 		# Boardcast the host state to all clients.
-		socket.on 'slidechanged', (indices) =>
-			@state.indices = indices
-			info = JSON.stringify indices
-			console.log ">> slidechanged: #{info}".blue
-			socket.broadcast.emit 'slidechanged', indices
-
-		socket.on 'paused', =>
-			@state.is_paused = true
-			console.log ">> paused".blue
-			socket.broadcast.emit 'paused'
-
-		socket.on 'resumed', =>
-			@state.is_paused = false
-			console.log ">> resumed".blue
-			socket.broadcast.emit 'resumed'
+		socket.on 'state_changed', (state) =>
+			@state = state
+			info = JSON.stringify state
+			console.log ">> State changed: #{info}".blue
+			socket.broadcast.emit 'state_changed', state
