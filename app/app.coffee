@@ -54,7 +54,8 @@ class NT.App extends NB.Module
 		client_num = NB.io.sockets.clients().length
 		console.log ">> Client count: #{client_num}".c('green')
 
-		socket.emit 'state', @state
+		socket.on 'get_state', (data, resp_fn) =>
+			resp_fn @state
 
 		socket.on 'disconnect', ->
 			role = socket.store.data.role.toUpperCase()

@@ -2,6 +2,8 @@ class NT.Guest
 	constructor: (@socket) ->
 		@init_socket()
 
+		$('.prevent-interaction').show()
+
 		document.title += _.l(' - Guest')
 
 		Reveal.configure {
@@ -18,7 +20,7 @@ class NT.Guest
 					@full_screen()
 
 	init_socket: ->
-		@socket.on 'state', (state) =>
+		@socket.emit 'get_state', {}, (state) =>
 			indices = state.indices
 			Reveal.slide indices.h, indices.v, indices.f
 
