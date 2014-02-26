@@ -6,6 +6,7 @@ class NT.Host
 
 		@init_auth()
 		@init_events()
+		@init_timer()
 		@init_zoom()
 
 		@socket.on 'reconnect', @init_auth
@@ -53,6 +54,10 @@ class NT.Host
 
 					Reveal.slide Number.MAX_VALUE
 
+				when 'timer'
+					self.begin_time = Date.now()
+					localStorage.setItem('begin_time', self.begin_time)
+
 				when 'zoom'
 					self.is_zoom_mode = !self.is_zoom_mode
 					if not self.is_zoom_mode
@@ -64,6 +69,19 @@ class NT.Host
 					$('.prevent-interaction').toggle()
 					$this.find('i').toggleClass('fa-lock fa-unlock')
 			$this.blur()
+
+	init_timer: ->
+		@begin_time = localStorage.getItem('begin_time')
+
+		if not @begin_time
+			@begin_time = Date.now()
+			localStorage.setItem('begin_time', @begin_time)
+
+		@timer = setInterval(=>
+			now = Date.now()
+			time = new Date(now - (+@begin_time))
+			$('#timer .time').text "#{time.getMinutes()} : #{time.getSeconds()}"
+		, 1000)
 
 	init_zoom: ->
 		$slides = $('.slides')
