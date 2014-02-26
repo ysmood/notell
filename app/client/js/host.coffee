@@ -1,6 +1,6 @@
 class NT.Host
 	constructor: (@socket) ->
-		@auth()
+		@init_auth()
 		@init_events()
 
 	init_events: ->
@@ -45,22 +45,11 @@ class NT.Host
 		@socket.emit 'slidechanged', Reveal.getIndices()
 		@socket.emit 'resumed'
 
-	auth: =>
-		token = localStorage.getItem('token')
+	init_auth: =>
+		@token = localStorage.getItem('token')
 
-		if token
-			@socket.emit('auth', {
-				token: token
-			}, (is_succeed) =>
-				if is_succeed
-					@logged_in()
-				else
-					_.notify {
-						info: _.l(data)
-						class: 'red'
-					}
-					localStorage.removeItem 'token'
-			)
+		if @token
+			@auth()
 		else
 			$msgbox = _.msg_box {
 				title: _.l('Login')
@@ -69,12 +58,25 @@ class NT.Host
 					{
 						name: _.l('OK')
 						clicked: =>
-							token = $msgbox.find('input').val()
-							localStorage.setItem('token', token)
-							@socket.emit 'auth', {
-								token: token
-							}
 							$msgbox.modal('hide')
+							@token = $msgbox.find('input').val()
+							localStorage.setItem('token', @token)
+
+							@auth()
 					}
 				]
 			}
+
+	auth: =>
+		@socket.emit('auth', {
+			token: @token
+		}, (is_succeed) =>
+			if is_succeed
+				@logged_in()
+			else
+				_.notify {
+					info: _.l(data)
+					class: 'red'
+				}
+				localStorage.removeItem 'token'
+		)
