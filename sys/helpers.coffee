@@ -61,7 +61,7 @@ _.mixin
 
 		NB.code_cache_pool ?= {}
 
-		if NB.code_cache_pool[path]
+		if NB.code_cache_pool[path] != undefined
 			return NB.code_cache_pool[path]
 
 		get_code = =>
@@ -80,7 +80,7 @@ _.mixin
 					t = (new Date).toLocaleTimeString()
 
 					if is_first_load
-						console.log (">> #{t} Load: " + path).c('green')
+						console.log (">> #{t} Watch: " + path).c('green')
 					else
 						NB.nobone.emitter.emit 'code_reload', path
 
@@ -92,9 +92,6 @@ _.mixin
 
 		if NB.conf.mode != 'product'
 			Gaze = require 'gaze'
-			NB.watch_count ?= 0
-			NB.watch_count++
-			console.log ">> #{NB.watch_count}".c('yellow')
 
 			gaze = new Gaze(path)
 			gaze.on('changed', get_code)
