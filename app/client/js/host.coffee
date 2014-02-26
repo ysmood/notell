@@ -1,11 +1,15 @@
 class NT.Host
 	constructor: (@socket) ->
+		@is_locked = false
+
 		@init_auth()
 		@init_events()
 
 		@socket.on 'reconnect', @init_auth
 
 	init_events: ->
+		self = @
+
 		Reveal.addEventListener 'slidechanged', (e) =>
 			@socket.emit 'slidechanged', Reveal.getIndices()
 
@@ -23,13 +27,28 @@ class NT.Host
 
 		@$host_panel = $('#host-panel')
 		@$host_panel.find('.btn').click ->
-			switch $(this).attr('action')
+			$this = $(this)
+			switch $this.attr('action')
 				when 'home'
+					return if self.is_locked
+
 					Reveal.slide 0
+
 				when 'pause'
+					return if self.is_locked
+
 					Reveal.togglePause()
+					$this.find('i').toggleClass('fa-pause fa-play')
+
 				when 'end'
+					return if self.is_locked
+
 					Reveal.slide Number.MAX_VALUE
+
+				when 'lock'
+					self.is_locked = !self.is_locked
+					$('.prevent-interaction').toggle()
+					$this.find('i').toggleClass('fa-lock fa-unlock')
 
 	logged_in: =>
 		_.notify {
