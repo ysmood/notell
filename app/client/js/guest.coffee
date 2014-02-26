@@ -20,12 +20,9 @@ class NT.Guest
 					@full_screen()
 
 	init_socket: ->
-		@socket.emit 'get_state', {}, (state) =>
-			indices = state.indices
-			Reveal.slide indices.h, indices.v, indices.f
+		@socket.on 'reconnect', @set_state
 
-			if state.is_paused and not Reveal.isPaused()
-				Reveal.togglePause()
+		@socket.emit 'get_state', {}, @set_state
 
 		@socket.on 'slidechanged', (indices) =>
 			Reveal.slide indices.h, indices.v, indices.f
@@ -37,6 +34,13 @@ class NT.Guest
 		@socket.on 'resumed', =>
 			if Reveal.isPaused()
 				Reveal.togglePause()
+
+	set_state: (state) =>
+		indices = state.indices
+		Reveal.slide indices.h, indices.v, indices.f
+
+		if state.is_paused and not Reveal.isPaused()
+			Reveal.togglePause()
 
 	full_screen: ->
 
@@ -50,4 +54,3 @@ class NT.Guest
 
 		if requestMethod
 			requestMethod.apply element
-

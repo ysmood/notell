@@ -1,7 +1,10 @@
 
 class NT.Notell
 	constructor: ->
-		@socket = io.connect(location.origin)
+		@socket = io.connect(location.origin, {
+			'reconnection limit': 1000
+			'max reconnection attempts': 100000
+		})
 
 		@init_revealjs()
 

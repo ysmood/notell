@@ -3,6 +3,8 @@ class NT.Host
 		@init_auth()
 		@init_events()
 
+		@socket.on 'reconnect', @init_auth
+
 	init_events: ->
 		Reveal.addEventListener 'slidechanged', (e) =>
 			@socket.emit 'slidechanged', Reveal.getIndices()
