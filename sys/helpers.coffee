@@ -69,6 +69,9 @@ _.mixin
 				->
 					fs = require 'fs-extra'
 					str = fs.readFileSync(path, 'utf8')
+
+					is_first_load = !NB.code_cache_pool[path]
+
 					if compiler
 						NB.code_cache_pool[path] = compiler str, path
 					else
@@ -77,7 +80,12 @@ _.mixin
 					t = (new Date).toLocaleTimeString()
 					console.log (">> #{t} Reload: " + path).c('green')
 
-					NB.nobone.emitter.emit 'code_reload', path
+					if is_first_load
+						console.log (">> #{t} Load: " + path).c('green')
+					else
+						NB.nobone.emitter.emit 'code_reload', path
+
+						console.log (">> #{t} Reload: " + path).c('green')
 				"Load error: " + path
 			)
 
