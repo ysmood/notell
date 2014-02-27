@@ -28,6 +28,9 @@ class NT.Guest
 			@set_state state
 
 	set_state: (state) =>
+		if not state.indices
+			return
+
 		indices = state.indices
 		Reveal.slide indices.h, indices.v, indices.f
 
