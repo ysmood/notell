@@ -82,8 +82,8 @@ class NT.Host
 		@timer = setInterval(=>
 			now = Date.now()
 			time = new Date(now - @begin_time)
-			min = ('0' + time.getMinutes()).slice(-2)
-			sec = ('0' + time.getSeconds()).slice(-2)
+			min = _.pad time.getMinutes(), 2, '0'
+			sec = _.pad time.getSeconds(), 2, '0'
 			@$time.text "#{min} : #{sec}"
 		, 500)
 
