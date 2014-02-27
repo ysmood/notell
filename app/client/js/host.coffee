@@ -3,6 +3,7 @@ class NT.Host
 		@is_locked = false
 		@is_zoom_mode = false
 		@zoom = null
+		@$time = $('#timer .time')
 
 		@init_auth()
 		@init_events()
@@ -47,7 +48,7 @@ class NT.Host
 					return if self.is_locked
 
 					Reveal.togglePause()
-					$this.find('i').toggleClass('fa-pause fa-play')
+					$this.find('i').toggleClass 'fa-pause fa-play'
 
 				when 'end'
 					return if self.is_locked
@@ -62,16 +63,17 @@ class NT.Host
 					self.is_zoom_mode = !self.is_zoom_mode
 					if not self.is_zoom_mode
 						self.zoom == null
-					$this.find('i').toggleClass('fa-search fa-search-plus')
+					$this.find('i').toggleClass 'fa-search fa-search-plus'
 
 				when 'lock'
 					self.is_locked = !self.is_locked
 					$('.prevent-interaction').toggle()
-					$this.find('i').toggleClass('fa-lock fa-unlock')
+					$this.find('i').toggleClass 'fa-lock fa-unlock'
 			$this.blur()
 
 	init_timer: ->
-		@begin_time = localStorage.getItem('begin_time')
+		@begin_time = +localStorage.getItem('begin_time')
+		$('#timer').show()
 
 		if not @begin_time
 			@begin_time = Date.now()
@@ -79,9 +81,11 @@ class NT.Host
 
 		@timer = setInterval(=>
 			now = Date.now()
-			time = new Date(now - (+@begin_time))
-			$('#timer .time').text "#{time.getMinutes()} : #{time.getSeconds()}"
-		, 1000)
+			time = new Date(now - @begin_time)
+			min = ('0' + time.getMinutes()).slice(-2)
+			sec = ('0' + time.getSeconds()).slice(-2)
+			@$time.text "#{min} : #{sec}"
+		, 500)
 
 	init_zoom: ->
 		$slides = $('.slides')
