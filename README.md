@@ -14,6 +14,11 @@ When you and your colleagues have network connection, take up your phone and rem
 * Auto refresh the presentation when you edit save it.
 
 
+### Screenshot
+
+![screenshot][3]
+
+
 ### Quick Start
 
 0. First we clone the project to a directory.
@@ -63,3 +68,4 @@ Feb 2014 ys
 
   [1]: https://github.com/hakimel/reveal.js
   [2]: http://socket.io/
+  [3]: https://raw.github.com/ysmood/notell/master/docs/screenshot.jpg
