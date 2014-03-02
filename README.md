@@ -9,7 +9,7 @@ When you and your colleagues have network connection, take up your phone and rem
 
 ### Features
 
-* Dead simple to setup.
+* Deadly simple to setup.
 
 * Auto refresh the presentation when you edit save it.
 
