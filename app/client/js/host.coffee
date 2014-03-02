@@ -138,6 +138,7 @@ class NT.Host
 				btn_list: [
 					{
 						name: _.l('OK')
+						is_default: true
 						clicked: =>
 							$msgbox.modal('hide')
 							@token = $msgbox.find('input').val()

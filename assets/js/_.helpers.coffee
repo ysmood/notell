@@ -12,6 +12,7 @@ _.mixin(
 					{
 						name: string
 						class: string
+						is_default: true
 						clicked: ->
 					}
 				]
@@ -26,6 +27,7 @@ _.mixin(
 			btn_list: [
 				name: _.l('Close')
 				class: ''
+				is_default: true
 				clicked: ->
 					$msg_box.modal('hide')
 			]
@@ -46,6 +48,12 @@ _.mixin(
 			$this = $(this)
 			$this.click(opts.btn_list[i].clicked) if opts.btn_list[i].clicked
 		)
+
+		# Default button
+		$msg_box.keypress (e) ->
+			if e.keyCode == 13
+				btn = _.find opts.btn_list, (el) -> el.is_default
+				btn?.clicked?()
 
 		$msg_box.on('shown.bs.modal', opts.shown) if opts.shown
 		$msg_box.on('hide.bs.modal', opts.closed) if opts.closed
