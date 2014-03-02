@@ -156,7 +156,7 @@ class NT.Host
 				@logged_in()
 			else
 				_.notify {
-					info: _.l(data)
+					info: _.l(is_succeed)
 					class: 'red'
 				}
 				localStorage.removeItem 'token'
