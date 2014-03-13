@@ -10,15 +10,21 @@ class NT.App extends NB.Module
 		@set_static_dir('app/client', '/app')
 
 		NB.app.get '/', @home
+		NB.app.get '/:doc_name', @home
 
 		@init_sockets()
 
 	home: (req, res) =>
+		if req.params.doc_name
+			path = 'usr/' + req.params.doc_name + '/index.ejs'
+		else
+			path = 'app/client/ejs/reveal.ejs'
+
 		data = {
-			head: @r.render('assets/ejs/head.ejs')
-			foot: @r.render('assets/ejs/foot.ejs')
-			host_assets: @r.render('app/client/ejs/assets.ejs')
-			reveal: @r.render('app/client/ejs/reveal.ejs')
+			head: @r.render 'assets/ejs/head.ejs'
+			foot: @r.render 'assets/ejs/foot.ejs'
+			host_assets: @r.render 'app/client/ejs/assets.ejs'
+			reveal: @r.render path
 		}
 
 		res.send @r.render("app/client/ejs/home.ejs", data)
