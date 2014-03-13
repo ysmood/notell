@@ -1,14 +1,14 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<?= head ?>
+	<?- head ?>
 
 	<meta name="apple-mobile-web-app-capable" content="yes" />
 	<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
 
 	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 
-	<?= _.css(
+	<?- _.css(
 		'/reveal.js/css/reveal.min.css',
 		'app/css/reveal_theme.css',
 		'/reveal.js/lib/css/zenburn.css',
@@ -31,16 +31,16 @@
 <body class="font-n">
 
 	<div class="reveal">
-		<?= reveal ?>
+		<?- reveal ?>
 	</div>
 
-	<?= host_assets ?>
+	<?- host_assets ?>
 
 	<div class="prevent-interaction"></div>
 
-	<?= foot ?>
+	<?- foot ?>
 
-	<?= _.js(
+	<?- _.js(
 		'/reveal.js/plugin/markdown/marked.js',
 		'/reveal.js/plugin/markdown/markdown.js',
 		'/reveal.js/lib/js/head.min.js',

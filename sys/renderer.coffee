@@ -20,6 +20,11 @@ class NB.Renderer
 		}
 
 	init_template_engine: ->
+		@ejs = require 'ejs'
+		@ejs.open = '<?'
+		@ejs.close = '?>'
+		@ejs.debug = (NB.conf.mode == 'development')
+
 		# Set '<? ... ?>' like syntax.
 		_.templateSettings =
 			evaluate    : /<\?([\s\S]+?)\?>/g
@@ -42,7 +47,7 @@ class NB.Renderer
 			return code
 		else
 			try
-				rendered = _.template(code, data)
+				rendered = @ejs.render(code, data)
 				return rendered.toString()
 			catch e
-				return "<pre>#{e.stack}</pre>"
+				return "<pre>#{_.escape(e)}</pre>"

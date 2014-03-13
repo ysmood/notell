@@ -1,8 +1,8 @@
 <!-- Global assets -->
-<?= render('assets/ejs/assets.ejs', null, true) ?>
+<?- render('assets/ejs/assets.ejs', null, true) ?>
 
 <div id="NB-scripts">
-	<?=
+	<?-
 		_.js(
 			// Third libs
 			'/jquery/dist/jquery.min.js',
@@ -19,7 +19,7 @@
 	?>
 
 	<!-- Load languages. -->
-	<?= _.js(
+	<?- _.js(
 		NB.conf.load_langs.map(
 			function(el) {
 				return '/langs/' + el + '.js';

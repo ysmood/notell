@@ -2,9 +2,9 @@
 <html>
 <head>
 
-	<?= head ?>
+	<?- head ?>
 
-	<title><?- _.l('NB') ?> - 404</title>
+	<title><?= _.l('NB') ?> - 404</title>
 
 </head>
 <body>
@@ -14,11 +14,11 @@
 			<img src="/img/NB.png" alt="">
 			<h1 class="font-l font-38">
 				<i class="icon-warning-sign"></i>
-				<code><?= url ?></code>
-				<?- _.l('Not Found') ?>
+				<code><?- url ?></code>
+				<?= _.l('Not Found') ?>
 			</h1>
 			<h3 class="font-n">
-				<a href="/"><?- _.l('Click here back') ?></a>
+				<a href="/"><?= _.l('Click here back') ?></a>
 			</h3>
 		</div>
 	</div>
