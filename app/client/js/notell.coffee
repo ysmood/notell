@@ -1,9 +1,12 @@
 class NT.Notell
 	constructor: ->
-		@socket = io.connect(location.origin, {
-			'reconnection limit': 500
-			'max reconnection attempts': 100000
-		})
+		try
+			@socket = io.connect(location.origin, {
+				'reconnection limit': 500
+				'max reconnection attempts': 100000
+			})
+		catch e
+			console.log e
 
 		@init_revealjs()
 
@@ -12,6 +15,9 @@ class NT.Notell
 		@init_auto_refresh()
 
 	init_role: =>
+		if not @socket
+			return
+
 		self = @
 
 		if localStorage.getItem('token')
