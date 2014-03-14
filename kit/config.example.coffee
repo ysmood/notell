@@ -18,4 +18,6 @@ NB.conf = {
 
 	token: 'abc'
 
+	default: 'app/client/ejs/reveal.ejs'
+
 }

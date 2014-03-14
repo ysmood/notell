@@ -15,10 +15,13 @@ class NT.App extends NB.Module
 		@init_sockets()
 
 	home: (req, res) =>
+		fs = require 'fs-extra'
 		if req.params.doc_name
 			path = 'usr/' + req.params.doc_name + '/index.ejs'
+			if not fs.existsSync(path)
+				path = NB.conf.default
 		else
-			path = 'app/client/ejs/reveal.ejs'
+			path = NB.conf.default
 
 		data = {
 			head: @r.render 'assets/ejs/head.ejs'
