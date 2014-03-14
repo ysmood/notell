@@ -157,7 +157,7 @@ class NT.Host
 				@logged_in()
 			else
 				_.notify {
-					info: _.l(is_succeed)
+					info: _.l('Wrong Password')
 					class: 'red'
 				}
 				localStorage.removeItem 'token'
