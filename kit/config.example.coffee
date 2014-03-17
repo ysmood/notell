@@ -2,14 +2,6 @@ NB.conf = {
 
 	port: 8013
 
-	enable_socket_io: true
-
-	modules: {
-		'NT.App': './app/app'
-	}
-
-	db_filename: 'var/NB.db'
-
 	load_langs: ['en']
 
 	current_lang: ['en']
@@ -18,6 +10,6 @@ NB.conf = {
 
 	token: 'abc'
 
-	default: 'app/client/ejs/reveal.ejs'
+	default: 'usr/demo_ppt'
 
 }

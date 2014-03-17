@@ -84,6 +84,12 @@ class NB.Module
 		NB.package ?= require '../package.json'
 		require '../var/config'
 
+		NB.conf.enable_socket_io = true
+
+		NB.conf.modules = {
+			'NT.App': './app/app'
+		}
+
 	_load_langs: ->
 		NB.langs ?= {}
 		for lang in NB.conf.load_langs

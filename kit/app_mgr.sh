@@ -11,9 +11,13 @@ case $1 in
 
 		# Configuration
 		config_example='kit/config.example.coffee'
+		ppt_example='kit/demo_ppt.example.ejs'
 		if [ ! -f config.coffee ]; then
-			echo '>> Auto created an example config file.'
 			cp $config_example var/config.coffee
+			echo '>> Auto created an example config "var/config.coffee".'
+
+			cp $ppt_example usr/demo_ppt.ejs
+			echo '>> Auto created a demo ppt at path "usr/demo_ppt.ejs"'
 		fi
 		;;
 
