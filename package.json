@@ -12,16 +12,17 @@
     "express": "~3.4.4",
     "formidable": "~1.0.14",
     "bower": "~1.2.7",
+    "ejs": "~0.8.5",
     "underscore": "~1.5.2",
     "coffee-script": "~1.6.3",
     "stylus": "~0.38.0",
     "underscore.string": "~2.3.3",
     "forever": "~0.10.9",
     "fs-extra": "~0.8.1",
-    "gaze": "~0.4.3",
     "socket.io": "~0.9.16"
   },
   "devDependencies": {
+    "gaze": "~0.4.3",
     "colors": "~0.6.2"
   },
   "repository": {
