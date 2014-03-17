@@ -21,22 +21,24 @@ When you and your colleagues have network connection, take up your phone and rem
 
 ### Quick Start
 
-0. First we clone the project to a directory.
+0. First we clone the project to a directory, and `cd` to the root directory of Notell.
 
    ```bash
    git clone https://github.com/ysmood/notell.git
    cd notell
    ```
 
-0. Install dependencies.
+0. Install dependencies. It may take a while to install all the dependencies, please be patient :D
 
     ```bash
     npm run-script setup
     ```
 
+    The setup will automatically creat a config file `var/config.coffee` and a demo ppt `usr/demo_ppt.ejs`.
+
 0. Edit the `var/config.coffee` file. Change the value of the `token`, this is the password for logging in as host.
 
-0. Run the test server.
+0. Now you can have a cup of tea, and start the test server.
 
     ```bash
     npm test
@@ -44,10 +46,18 @@ When you and your colleagues have network connection, take up your phone and rem
 
 0. Visit the `http://127.0.0.1:8013` in browser, the server should work.
 
-0. Edit the file `app/client/ejs/reveal.ejs`, it is where you write your presentation contents.
-   When you save the file, the server will auto-reload the page, no F5 hell.
+0. Edit the file `usr/demo_ppt.ejs`. When you save the file, the server will auto-reload the page, no F5 hell.
 
-   Edit the file `app/client/css/custom.styl` to define your custom styles.
+
+### Add New PPT
+
+Of cause, Notell can serve multiple presentations at the same time. Here's an example.
+
+0. Just create a `.ejs` file in the `usr` folder is all you need, say the file name is 'usr/moe.ejs'.
+
+0. Then visit `http://127.0.0.1:8013/moe`, you'll get what you want.
+
+0. To make `moe` the default page? Simplly open the `var/config.coffee`, find the `default` key, change its value to `usr/moe`. Then restart the server.
 
 
 ### Deamon Operations
