@@ -10,18 +10,23 @@ class NT.App extends NB.Module
 		@set_static_dir('app/client', '/app')
 
 		NB.app.get '/', @home
-		NB.app.get '/:doc_name', @home
+		NB.app.get '/:doc_path', @home
 
 		@init_sockets()
 
-	home: (req, res) =>
+	home: (req, res, next) =>
 		fs = require 'fs-extra'
-		if req.params.doc_name
-			path = 'usr/' + req.params.doc_name + '/index.ejs'
+		if req.params.doc_path
+			path = 'usr/' + req.params.doc_path
+			if not _.endsWith(path, '.ejs')
+				path += '.ejs'
 			if not fs.existsSync(path)
-				path = NB.conf.default
+				next()
+				return
 		else
 			path = NB.conf.default
+			if not _.endsWith(path, '.ejs')
+				path += '.ejs'
 
 		data = {
 			head: @r.render 'assets/ejs/head.ejs'
