@@ -11,7 +11,7 @@ When you and your colleagues have network connection, take up your phone and rem
 
 * Deadly simple to setup.
 
-* Auto refresh the presentation when you edit save it.
+* Auto refresh the presentation when your editor saves it.
 
 
 ### Screenshot
