@@ -2,7 +2,7 @@ class NT.Guest
 	constructor: (@socket) ->
 		@init_socket()
 
-		$('.prevent-interaction').show()
+		# $('.prevent-interaction').show()
 
 		document.title += _.l(' - Guest')
 
