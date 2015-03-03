@@ -11,7 +11,7 @@ switch process.argv[2]
 		# Configuration
 		config_example = 'kit/config.example.coffee'
 		ppt_example = 'kit/demo_ppt.example.ejs'
-		if kit.existsSync 'config.coffee'
+		if not kit.existsSync 'var/config.coffee'
 			kit.copySync config_example, 'var/config.coffee'
 			kit.log '>> Auto created an example config "var/config.coffee".'
 
