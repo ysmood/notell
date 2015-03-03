@@ -31,7 +31,7 @@ When you and your colleagues have network connection, take up your phone and rem
 0. Install dependencies. It may take a while to install all the dependencies, please be patient :D
 
     ```bash
-    npm run-script setup
+    npm install
     ```
 
     The setup will automatically creat a config file `var/config.coffee` and a demo ppt `usr/demo_ppt.ejs`.

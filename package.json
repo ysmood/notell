@@ -3,30 +3,31 @@
   "version": "0.0.1",
   "main": "nobone.coffee",
   "scripts": {
-    "setup": "kit/app_mgr.sh setup",
-    "test": "kit/app_mgr.sh test",
-    "start": "kit/app_mgr.sh start",
-    "stop": "kit/app_mgr.sh stop"
+    "install": "coffee kit/app_mgr.coffee -- setup",
+    "test": "coffee kit/app_mgr.coffee -- test",
+    "start": "coffee kit/app_mgr.coffee -- start",
+    "stop": "coffee kit/app_mgr.coffee -- stop"
   },
   "dependencies": {
-    "express": "~3.4.4",
-    "formidable": "~1.0.14",
-    "bower": "~1.2.7",
-    "ejs": "~0.8.5",
-    "underscore": "~1.5.2",
-    "coffee-script": "~1.6.3",
-    "stylus": "~0.38.0",
-    "underscore.string": "~2.3.3",
-    "forever": "~0.10.9",
-    "fs-extra": "~0.8.1",
-    "socket.io": "~0.9.16"
+    "bower": "1.3.12",
+    "coffee-script": "1.6.3",
+    "ejs": "0.8.5",
+    "express": "3.4.4",
+    "forever": "0.10.9",
+    "formidable": "1.0.14",
+    "fs-extra": "0.8.1",
+    "nokit": "*",
+    "socket.io": "0.9.16",
+    "stylus": "0.38.0",
+    "underscore": "1.5.2",
+    "underscore.string": "2.3.3"
   },
   "devDependencies": {
-    "gaze": "~0.4.3",
-    "colors": "~0.6.2"
+    "gaze": "0.4.3",
+    "colors": "0.6.2"
   },
   "repository": {
     "type": "git",
-    "url": ""
+    "url": "https://github.com/ysmood/notell"
   }
 }
