@@ -2,9 +2,9 @@
 
 A presentation server based on [Reveal.js][1] and [Socket.IO][2].
 
-You can use a PC or a phone to control the presentation state on guest machines.
+Use a PC or a phone to control the presentation state on guest machines remotely.
 
-When you and your colleagues have network connection, take up your phone and remote control your presentation ~
+Especially useful when you and your colleagues are on the same network.
 
 
 ### Features
