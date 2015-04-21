@@ -34,7 +34,7 @@ Especially useful when you and your colleagues are on the same network.
     npm install
     ```
 
-    The setup will automatically creat a config file `var/config.coffee` and a demo ppt `usr/demo_ppt.ejs`.
+    The setup will automatically create a config file `var/config.coffee` and a demo ppt `usr/demo_ppt.ejs`.
 
 0. Edit the `var/config.coffee` file. Change the value of the `token`, this is the password for logging in as host.
 
@@ -57,10 +57,10 @@ Of cause, Notell can serve multiple presentations at the same time. Here's an ex
 
 0. Then visit `http://127.0.0.1:8013/moe`, you'll get what you want.
 
-0. To make `moe` the default page? Simplly open the `var/config.coffee`, find the `default` key, change its value to `usr/moe`. Then restart the server.
+0. To make `moe` the default page? Simply open the `var/config.coffee`, find the `default` key, change its value to `usr/moe`. Then restart the server.
 
 
-### Deamon Operations
+### Daemon Operations
 
 ```bash
 npm start
